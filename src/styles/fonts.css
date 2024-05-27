@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Nippo';
+  src: url('fonts/Nippo-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url('fonts/DarkerGrotesque-Variable.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('fonts/SpaceGrotesk-VariableFont.ttf') format('truetype');
+}

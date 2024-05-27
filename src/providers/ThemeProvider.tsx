@@ -1,6 +1,6 @@
+import {theme} from '@/utils';
 import {ConfigProvider} from 'antd';
 import React from 'react';
-import {theme} from '../utils';
 
 interface Props {
   children: React.ReactNode;
