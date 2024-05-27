@@ -1,3 +1,5 @@
+import nftBoy from '@/assets/nft-boy.png';
+import nftGirl from '@/assets/nft-girl.png';
 import {colors} from '@/utils';
 import {Col, Flex, Row} from 'antd';
 import NftCard from './NftCard';
@@ -10,7 +12,7 @@ const fakeGems = [
     title: 'PALADINS #38916',
     date: new Date('2021-09-01'),
     tag: 'gaming',
-    img: 'assets/nft-girl.png',
+    img: nftGirl,
     price: 1,
   },
   {
@@ -18,14 +20,14 @@ const fakeGems = [
     date: new Date('2021-09-01'),
     tag: 'digital art',
     price: 0.000123,
-    img: 'assets/nft-girl.png',
+    img: nftGirl,
   },
   {
     title: 'PALADINS #38918',
     date: new Date('2021-09-01'),
     tag: 'crew',
     price: 0.8,
-    img: 'assets/nft-boy.png',
+    img: nftBoy,
   },
 ];
 
