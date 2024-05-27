@@ -1,11 +1,11 @@
+import {Hero} from '@/components';
 import {Col, Row} from 'antd';
-import {Text} from '../components';
 
 const Home = () => {
   return (
     <Row>
-      <Col>
-        <Text>PALADIN boiler</Text>
+      <Col span={24}>
+        <Hero />
       </Col>
     </Row>
   );
