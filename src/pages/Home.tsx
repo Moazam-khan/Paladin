@@ -1,9 +1,7 @@
 import {Col, Row} from 'antd';
 import {Text} from '../components';
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   return (
     <Row>
       <Col>

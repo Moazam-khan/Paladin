@@ -1,6 +1,4 @@
-type Props = {};
-
-const Nfts = (props: Props) => {
+const Nfts = () => {
   return <div>Nfts</div>;
 };
 
