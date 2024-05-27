@@ -1,4 +1,4 @@
-import {Hero} from '@/components';
+import {Hero, LatestGems} from '@/components';
 import {Col, Row} from 'antd';
 
 const Home = () => {
@@ -6,6 +6,9 @@ const Home = () => {
     <Row>
       <Col span={24}>
         <Hero />
+      </Col>
+      <Col span={24}>
+        <LatestGems />
       </Col>
     </Row>
   );
