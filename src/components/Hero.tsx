@@ -1,3 +1,5 @@
+import bgHero from '@/assets/bg-hero.jpeg';
+import heroSide from '@/assets/hero-sider.png';
 import {colors} from '@/utils';
 import {Col, Flex, Row} from 'antd';
 import Button from './Button';
@@ -9,7 +11,7 @@ const Hero = (props: Props) => {
   return (
     <Row
       style={{
-        backgroundImage: 'url(assets/bg-hero.jpeg)',
+        backgroundImage: `url(${bgHero})`,
         margin: 24,
         padding: 24,
         borderRadius: 15,
@@ -72,7 +74,7 @@ const Hero = (props: Props) => {
         </Flex>
       </Col>
       <Col span={10} style={{alignSelf: 'center'}}>
-        <img width={'100%'} src="assets/hero-sider.png" alt="hero" />
+        <img width={'100%'} src={heroSide} alt="hero" />
       </Col>
     </Row>
   );

@@ -17,7 +17,7 @@ body {
   margin: 0;
   /* remove when making dark mode */
   background-color: black;
-  background-image: url('assets/background.svg');
+  background-image: url('../assets/background.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
