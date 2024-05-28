@@ -1,5 +1,6 @@
 import {Layout} from 'antd';
 import React from 'react';
+import Footer from './Footer';
 import Header from './Header';
 
 const {Content} = Layout;
@@ -15,6 +16,7 @@ const AppLayout = ({children}: Props) => {
       }}>
       <Header />
       <Content style={{}}>{children}</Content>
+      <Footer />
     </Layout>
   );
 };
