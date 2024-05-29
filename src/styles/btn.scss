@@ -1,0 +1,199 @@
+.btn-clip {
+  --border-width: 0.75px;
+
+  box-shadow: none;
+
+  cursor: pointer;
+  padding: 0.5em 1.5em;
+  border: 0;
+  position: relative;
+  isolation: isolate;
+  place-content: center;
+  clip-path: polygon(
+    1.092% 18.624%,
+    1.092% 18.624%,
+    0.972% 19.259%,
+    0.863% 19.936%,
+    0.766% 20.65%,
+    0.68% 21.399%,
+    0.607% 22.177%,
+    0.547% 22.982%,
+    0.499% 23.809%,
+    0.465% 24.655%,
+    0.444% 25.516%,
+    0.437% 26.388%,
+    0.437% 86.957%,
+    0.437% 86.957%,
+    0.465% 88.72%,
+    0.548% 90.392%,
+    0.68% 91.952%,
+    0.858% 93.376%,
+    1.076% 94.642%,
+    1.331% 95.729%,
+    1.617% 96.613%,
+    1.93% 97.272%,
+    2.266% 97.684%,
+    2.62% 97.826%,
+    94.962% 97.826%,
+    94.962% 97.826%,
+    95.133% 97.793%,
+    95.301% 97.694%,
+    95.467% 97.532%,
+    95.629% 97.306%,
+    95.787% 97.02%,
+    95.94% 96.674%,
+    96.088% 96.27%,
+    96.229% 95.808%,
+    96.363% 95.292%,
+    96.49% 94.721%,
+    98.908% 82.93%,
+    98.908% 82.93%,
+    99.028% 82.295%,
+    99.137% 81.618%,
+    99.234% 80.903%,
+    99.32% 80.155%,
+    99.393% 79.376%,
+    99.453% 78.572%,
+    99.501% 77.744%,
+    99.535% 76.898%,
+    99.556% 76.037%,
+    99.563% 75.165%,
+    99.563% 13.043%,
+    99.563% 13.043%,
+    99.535% 11.28%,
+    99.452% 9.608%,
+    99.32% 8.048%,
+    99.142% 6.624%,
+    98.924% 5.358%,
+    98.669% 4.271%,
+    98.383% 3.387%,
+    98.07% 2.728%,
+    97.734% 2.316%,
+    97.38% 2.174%,
+    5.357% 2.174%,
+    5.357% 2.174%,
+    5.186% 2.207%,
+    5.018% 2.306%,
+    4.852% 2.468%,
+    4.69% 2.694%,
+    4.531% 2.98%,
+    4.378% 3.326%,
+    4.231% 3.73%,
+    4.089% 4.192%,
+    3.955% 4.708%,
+    3.829% 5.279%,
+    1.092% 18.624%
+  );
+}
+
+.btn-clip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+//bg
+.btn-bg-primary::after {
+  background-color: #354dfe;
+}
+
+//bg
+.btn-bg-secondary::after {
+  background-color: white;
+  opacity: 0.1;
+}
+
+//border
+.btn-bg-primary::before {
+  background-color: white;
+  opacity: 0.2;
+}
+
+//border
+.btn-bg-secondary::before {
+  background-color: white;
+  opacity: 0.1;
+}
+
+.btn-clip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  clip-path: polygon(
+    calc(1.092% + var(--border-width)) calc(18.624% + var(--border-width)),
+    calc(1.092% + var(--border-width)) calc(18.624% + var(--border-width)),
+    calc(0.972% + var(--border-width)) calc(19.259% + var(--border-width)),
+    calc(0.863% + var(--border-width)) calc(19.936% + var(--border-width)),
+    calc(0.766% + var(--border-width)) calc(20.65% + var(--border-width)),
+    calc(0.68% + var(--border-width)) calc(21.399% + var(--border-width)),
+    calc(0.607% + var(--border-width)) calc(22.177% + var(--border-width)),
+    calc(0.547% + var(--border-width)) calc(22.982% + var(--border-width)),
+    calc(0.499% + var(--border-width)) calc(23.809% + var(--border-width)),
+    calc(0.465% + var(--border-width)) calc(24.655% + var(--border-width)),
+    calc(0.444% + var(--border-width)) calc(25.516% + var(--border-width)),
+    calc(0.437% + var(--border-width)) calc(26.388% + var(--border-width)),
+    calc(0.437% + var(--border-width)) calc(86.957% - var(--border-width)),
+    calc(0.437% + var(--border-width)) calc(86.957% - var(--border-width)),
+    calc(0.465% + var(--border-width)) calc(88.72% - var(--border-width)),
+    calc(0.548% + var(--border-width)) calc(90.392% - var(--border-width)),
+    calc(0.68% + var(--border-width)) calc(91.952% - var(--border-width)),
+    calc(0.858% + var(--border-width)) calc(93.376% - var(--border-width)),
+    calc(1.076% + var(--border-width)) calc(94.642% - var(--border-width)),
+    calc(1.331% + var(--border-width)) calc(95.729% - var(--border-width)),
+    calc(1.617% + var(--border-width)) calc(96.613% - var(--border-width)),
+    calc(1.93% + var(--border-width)) calc(97.272% - var(--border-width)),
+    calc(2.266% + var(--border-width)) calc(97.684% - var(--border-width)),
+    calc(2.62% + var(--border-width)) calc(97.826% - var(--border-width)),
+    calc(94.962% - var(--border-width)) calc(97.826% - var(--border-width)),
+    calc(94.962% - var(--border-width)) calc(97.826% - var(--border-width)),
+    calc(95.133% - var(--border-width)) calc(97.793% - var(--border-width)),
+    calc(95.301% - var(--border-width)) calc(97.694% - var(--border-width)),
+    calc(95.467% - var(--border-width)) calc(97.532% - var(--border-width)),
+    calc(95.629% - var(--border-width)) calc(97.306% - var(--border-width)),
+    calc(95.787% - var(--border-width)) calc(97.02% - var(--border-width)),
+    calc(95.94% - var(--border-width)) calc(96.674% - var(--border-width)),
+    calc(96.088% - var(--border-width)) calc(96.27% - var(--border-width)),
+    calc(96.229% - var(--border-width)) calc(95.808% - var(--border-width)),
+    calc(96.363% - var(--border-width)) calc(95.292% - var(--border-width)),
+    calc(96.49% - var(--border-width)) calc(94.721% - var(--border-width)),
+    calc(98.908% - var(--border-width)) calc(82.93% - var(--border-width)),
+    calc(98.908% - var(--border-width)) calc(82.93% - var(--border-width)),
+    calc(99.028% - var(--border-width)) calc(82.295% - var(--border-width)),
+    calc(99.137% - var(--border-width)) calc(81.618% - var(--border-width)),
+    calc(99.234% - var(--border-width)) calc(80.903% - var(--border-width)),
+    calc(99.32% - var(--border-width)) calc(80.155% - var(--border-width)),
+    calc(99.393% - var(--border-width)) calc(79.376% - var(--border-width)),
+    calc(99.453% - var(--border-width)) calc(78.572% - var(--border-width)),
+    calc(99.501% - var(--border-width)) calc(77.744% - var(--border-width)),
+    calc(99.535% - var(--border-width)) calc(76.898% - var(--border-width)),
+    calc(99.556% - var(--border-width)) calc(76.037% - var(--border-width)),
+    calc(99.563% - var(--border-width)) calc(75.165% - var(--border-width)),
+    calc(99.563% - var(--border-width)) calc(13.043% + var(--border-width)),
+    calc(99.563% - var(--border-width)) calc(13.043% + var(--border-width)),
+    calc(99.535% - var(--border-width)) calc(11.28% + var(--border-width)),
+    calc(99.452% - var(--border-width)) calc(9.608% + var(--border-width)),
+    calc(99.32% - var(--border-width)) calc(8.048% + var(--border-width)),
+    calc(99.142% - var(--border-width)) calc(6.624% + var(--border-width)),
+    calc(98.924% - var(--border-width)) calc(5.358% + var(--border-width)),
+    calc(98.669% - var(--border-width)) calc(4.271% + var(--border-width)),
+    calc(98.383% - var(--border-width)) calc(3.387% + var(--border-width)),
+    calc(98.07% - var(--border-width)) calc(2.728% + var(--border-width)),
+    calc(97.734% - var(--border-width)) calc(2.316% + var(--border-width)),
+    calc(97.38% - var(--border-width)) calc(2.174% + var(--border-width)),
+    calc(5.357% + var(--border-width)) calc(2.174% + var(--border-width)),
+    calc(5.357% + var(--border-width)) calc(2.174% + var(--border-width)),
+    calc(5.186% + var(--border-width)) calc(2.207% + var(--border-width)),
+    calc(5.018% + var(--border-width)) calc(2.306% + var(--border-width)),
+    calc(4.852% + var(--border-width)) calc(2.468% + var(--border-width)),
+    calc(4.69% + var(--border-width)) calc(2.694% + var(--border-width)),
+    calc(4.531% + var(--border-width)) calc(2.98% + var(--border-width)),
+    calc(4.378% + var(--border-width)) calc(3.326% + var(--border-width)),
+    calc(4.231% + var(--border-width)) calc(3.73% + var(--border-width)),
+    calc(4.089% + var(--border-width)) calc(4.192% + var(--border-width)),
+    calc(3.955% + var(--border-width)) calc(4.708% + var(--border-width)),
+    calc(3.829% + var(--border-width)) calc(5.279% + var(--border-width)),
+    calc(1.092% + var(--border-width)) calc(18.624% + var(--border-width))
+  );
+}

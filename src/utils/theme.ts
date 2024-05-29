@@ -15,8 +15,9 @@ export const theme: ThemeConfig = {
       colorText: 'white',
     },
     Button: {
-      colorPrimary: colors.secondary,
-      colorPrimaryHover: colors.secondary90,
+      colorPrimary: 'transparent',
+      colorPrimaryHover: 'transparent',
+      borderRadius: 0,
     },
   },
   token: {

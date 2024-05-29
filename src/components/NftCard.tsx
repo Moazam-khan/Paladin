@@ -73,7 +73,7 @@ const NftCard = ({title, date, tag, price, img}: Props) => {
           margin: '0 24px',
           paddingBottom: 16,
         }}>
-        <Button style={{width: '100%', backgroundColor: '#FFFFFF1A'}}>
+        <Button secondary style={{width: '100%'}}>
           BUY NFT
         </Button>
       </div>

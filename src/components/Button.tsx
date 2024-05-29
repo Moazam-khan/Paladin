@@ -1,9 +1,24 @@
 import {Button as AntdBtn, ButtonProps} from 'antd';
 
-const Button = ({children, ...rest}: ButtonProps) => {
+interface BtnProps extends ButtonProps {
+  secondary?: boolean;
+}
+
+const Button = ({children, className, secondary, ...rest}: BtnProps) => {
   return (
-    <AntdBtn type={'primary'} {...rest}>
-      {children}
+    <AntdBtn
+      className={`btn-clip ${
+        secondary ? 'btn-bg-secondary' : 'btn-bg-primary'
+      } ${className}`}
+      type={'primary'}
+      {...rest}>
+      <span
+        style={{
+          position: 'relative',
+          bottom: '2.4px',
+        }}>
+        {children}
+      </span>
     </AntdBtn>
   );
 };

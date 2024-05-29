@@ -54,12 +54,7 @@ const Hero = (props: Props) => {
           style={{
             marginTop: 24,
           }}>
-          <Button
-            style={{
-              backgroundColor: '#FFFFFF1A',
-            }}>
-            HOW TO MINT?
-          </Button>
+          <Button secondary>HOW TO MINT?</Button>
           <Flex style={{flexDirection: 'column'}}>
             <Button>Mint your ERC404</Button>
             <Text
