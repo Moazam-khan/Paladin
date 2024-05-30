@@ -1,4 +1,4 @@
-import bgHero from '@/assets/bg-hero.jpeg';
+import bgHero from '@/assets/bg-hero.png';
 import heroSide from '@/assets/hero-sider.png';
 import {colors} from '@/utils';
 import {Col, Flex, Row} from 'antd';

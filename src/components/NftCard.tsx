@@ -8,15 +8,23 @@ type Props = {
   tag: string;
   price: number;
   img: string;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const NftCard = ({title, date, tag, price, img}: Props) => {
+const NftCard = ({title, date, tag, price, img, style, ...rest}: Props) => {
   return (
     <div
       style={{
+        height: '100%',
         border: '1px solid #FFFFFF33',
-      }}>
-      <img src={img} height={289} alt={title} />
+        ...style,
+      }}
+      {...rest}>
+      <img
+        src={img}
+        width={'100%'}
+        style={{aspectRatio: 1, maxHeight: 290, objectFit: 'cover'}}
+        alt={title}
+      />
       <div
         style={{
           margin: '0 24px',
