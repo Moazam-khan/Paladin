@@ -43,7 +43,6 @@ const Sidebar = ({ open, setOpen }: Props) => {
           background: colors.gray,
           height: 'calc(100vh - 20px - 25px)',
         },
-        root: { margin: 0 },
       }}
       title={null}
       footer={null}
