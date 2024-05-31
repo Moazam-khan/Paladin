@@ -2,7 +2,7 @@ import logo from '@/assets/logo.png';
 import menu from '@/assets/menu.png';
 import wallet from '@/assets/wallet-2.png';
 import { colors } from '@/utils';
-import { Flex, Row } from 'antd';
+import { Divider, Flex, Row } from 'antd';
 import { useState } from 'react';
 import Button from './Button';
 import Text from './Text';
@@ -52,7 +52,7 @@ const MenuItem = ({
   </div>
 );
 
-const Header = (props: Props) => {
+const Sidebar = (props: Props) => {
   const [activeMenu, setActiveMenu] = useState('Home');
   const { md } = useBreakpoint();
 
@@ -68,8 +68,8 @@ const Header = (props: Props) => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <img src={logo} style={{ height: md ? 22 : 18 }} />
-        <Flex gap={46} style={{ display: md ? 'flex' : 'none' }}>
+        <img src={logo} style={{ height: 22 }} />
+        <Flex gap={46} style={{ display: md ? 'block' : 'none' }}>
           <MenuItem
             onClick={() => {
               setActiveMenu('Home');
@@ -107,4 +107,4 @@ const Header = (props: Props) => {
   );
 };
 
-export default Header;
+export default Sidebar;

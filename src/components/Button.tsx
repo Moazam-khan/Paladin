@@ -1,10 +1,10 @@
-import {Button as AntdBtn, ButtonProps} from 'antd';
+import { Button as AntdBtn, ButtonProps } from 'antd';
 
 interface BtnProps extends ButtonProps {
   secondary?: boolean;
 }
 
-const Button = ({children, className, secondary, ...rest}: BtnProps) => {
+const Button = ({ children, className, secondary, ...rest }: BtnProps) => {
   return (
     <AntdBtn
       className={`btn-clip ${
@@ -15,7 +15,7 @@ const Button = ({children, className, secondary, ...rest}: BtnProps) => {
       <span
         style={{
           position: 'relative',
-          bottom: '2.4px',
+          bottom: rest.size === 'large' ? 0 : '2.4px',
         }}>
         {children}
       </span>

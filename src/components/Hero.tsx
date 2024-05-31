@@ -1,42 +1,45 @@
 import bgHero from '@/assets/bg-hero.png';
 import heroSide from '@/assets/hero-sider.png';
-import {colors} from '@/utils';
-import {Col, Flex, Row} from 'antd';
+import { colors } from '@/utils';
+import { Col, Flex, Row } from 'antd';
 import Button from './Button';
 import Text from './Text';
+import { useBreakpoint } from '@/hooks';
 
 type Props = {};
 
 const Hero = (props: Props) => {
+  const { sm, md, lg, xl } = useBreakpoint();
+
   return (
-    <Row
-      style={{
-        backgroundImage: `url(${bgHero})`,
-        margin: 24,
-        padding: 24,
-        borderRadius: 15,
-      }}>
+    <Row gutter={[24, 24]}
+         style={{
+           backgroundImage: `url(${bgHero})`,
+           margin: 24,
+           padding: 24,
+           borderRadius: 15,
+         }}>
       <Col
-        span={14}
+        xs={{ span: 24, order: 2 }}
+        md={{ span: 14, order: 1 }}
         style={{
-          paddingRight: '1.4rem',
           display: 'flex',
           flexDirection: 'column',
           //space between
           justifyContent: 'space-between',
         }}>
-        <div style={{paddingTop: 28}}>
+        <div style={{ paddingTop: 28 }}>
           <Text
             style={{
               fontFamily: 'SpaceGrotesk',
               fontWeight: 700,
-              fontSize: '74px',
+              fontSize: md ? lg ? 74 : 40 : 36,
               lineHeight: '87%',
               textTransform: 'uppercase',
               letterSpacing: '-2.2px',
             }}>
             Unlock Your Creativity with{' '}
-            <span style={{color: colors.primary}}>PALADINS</span>
+            <span style={{ color: colors.primary }}>PALADINS</span>
           </Text>
           <Text
             style={{
@@ -45,18 +48,22 @@ const Hero = (props: Props) => {
               fontWeight: 600,
               display: 'block',
               color: colors.white50,
+              lineHeight: '100%',
             }}>
             Mint, Showcase, and Own Your Unique Creations in the World of NFTs
           </Text>
         </div>
-        <Flex
-          gap={10}
+        <Row
+          gutter={[10, 10]}
           style={{
             marginTop: 24,
+            width: lg ? '80%' : '100%',
           }}>
-          <Button secondary>HOW TO MINT?</Button>
-          <Flex style={{flexDirection: 'column'}}>
-            <Button>Mint your ERC404</Button>
+          <Col span={sm ? 12 : 24}>
+            <Button size={'large'} secondary block>HOW TO MINT?</Button>
+          </Col>
+          <Col span={sm ? 12 : 24} style={{ display: 'grid' }}>
+            <Button size={'large'} block>Mint your ERC404</Button>
             <Text
               style={{
                 fontFamily: 'DarkerGrotesque',
@@ -65,10 +72,13 @@ const Hero = (props: Props) => {
               }}>
               (0.03 ETH)
             </Text>
-          </Flex>
-        </Flex>
+          </Col>
+        </Row>
       </Col>
-      <Col span={10} style={{alignSelf: 'center'}}>
+      <Col
+        xs={{ span: 24, order: 1 }}
+        md={{ span: 10, order: 2 }}
+        style={{ alignSelf: 'center' }}>
         <img width={'100%'} src={heroSide} alt="hero" />
       </Col>
     </Row>

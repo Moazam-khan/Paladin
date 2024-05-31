@@ -3,15 +3,16 @@ import blend from '@/assets/social-blend.png';
 import discord from '@/assets/social-discord.png';
 import telegram from '@/assets/social-telegram.png';
 import twitter from '@/assets/social-twitter.png';
-import {colors} from '@/utils';
-import {Col, Flex, Row} from 'antd';
+import { colors } from '@/utils';
+import { Col, Flex, Row } from 'antd';
 import Text from './Text';
+import { useBreakpoint } from '@/hooks';
 
 type Props = {};
 
 const footerMenus = [
   {
-    title: {title: 'Products', link: '/products'},
+    title: { title: 'Products', link: '/products' },
     Items: [
       {
         title: 'NFTs',
@@ -28,7 +29,7 @@ const footerMenus = [
     ],
   },
   {
-    title: {title: 'Contact Us', link: '/contact-us'},
+    title: { title: 'Contact Us', link: '/contact-us' },
     Items: [
       {
         title: 'NFTs',
@@ -45,7 +46,7 @@ const footerMenus = [
     ],
   },
   {
-    title: {title: 'About Us', link: '/about-us'},
+    title: { title: 'About Us', link: '/about-us' },
     Items: [
       {
         title: 'NFTs',
@@ -64,13 +65,14 @@ const footerMenus = [
 ];
 
 const Footer = (props: Props) => {
+  const { sm, md } = useBreakpoint();
   return (
-    <Row
-      style={{
-        margin: '36px 24px',
-      }}>
-      <Col span={6}>
-        <img src={logo} style={{height: 22}} />
+    <Row gutter={[28, 56]}
+         style={{
+           margin: '36px 24px',
+         }}>
+      <Col xs={24} md={8} lg={6}>
+        <img src={logo} style={{ height: 22 }} />
         <Text
           style={{
             fontFamily: 'DarkerGrotesque',
@@ -78,6 +80,8 @@ const Footer = (props: Props) => {
             fontWeight: 700,
             display: 'block',
             color: colors.white50,
+            lineHeight: '18px',
+            marginTop: 10,
           }}>
           Lorem ipsum dolor sit amet consectetur. Non curabitur egestas quis in
           gravida parturient lacinia lacus.
@@ -85,7 +89,7 @@ const Footer = (props: Props) => {
         <Flex
           gap={20}
           style={{
-            marginTop: 10,
+            marginTop: 20,
           }}>
           <img src={blend} height={24} />
           <img src={telegram} height={24} />
@@ -93,42 +97,46 @@ const Footer = (props: Props) => {
           <img src={discord} height={24} />
         </Flex>
       </Col>
-      {footerMenus.map((subMenu, index) => (
-        <Col
-          style={{
-            paddingLeft: 24,
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-          key={subMenu.title.title + index}
-          span={6}>
-          <div>
-            <Text
+      <Col xs={24} md={16} lg={18}>
+        <Row gutter={[12, 36]}>
+          {footerMenus.map((subMenu, index) => (
+            <Col
               style={{
-                fontFamily: 'DarkerGrotesque',
-                fontSize: 18,
-                fontWeight: 800,
-                cursor: 'pointer',
-              }}>
-              {subMenu.title.title}
-            </Text>
-            {subMenu.Items.map((item) => (
-              <Text
-                key={item.title + subMenu.title.title + index}
-                style={{
-                  fontFamily: 'DarkerGrotesque',
-                  fontSize: 18,
-                  fontWeight: 600,
-                  display: 'block',
-                  color: colors.white50,
-                  cursor: 'pointer',
-                }}>
-                {item.title}
-              </Text>
-            ))}
-          </div>
-        </Col>
-      ))}
+                display: 'flex',
+                justifyContent: md ? 'center' : sm ? 'left' : 'center',
+                textAlign: sm ? 'left' : 'center',
+              }}
+              key={subMenu.title.title + index}
+              xs={24} sm={8}>
+              <div>
+                <Text
+                  style={{
+                    fontFamily: 'DarkerGrotesque',
+                    fontSize: 18,
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                  }}>
+                  {subMenu.title.title}
+                </Text>
+                {subMenu.Items.map((item) => (
+                  <Text
+                    key={item.title + subMenu.title.title + index}
+                    style={{
+                      fontFamily: 'DarkerGrotesque',
+                      fontSize: 18,
+                      fontWeight: 600,
+                      display: 'block',
+                      color: colors.white50,
+                      cursor: 'pointer',
+                    }}>
+                    {item.title}
+                  </Text>
+                ))}
+              </div>
+            </Col>
+          ))}
+        </Row>
+      </Col>
       <Col span={24}>
         <Text
           style={{

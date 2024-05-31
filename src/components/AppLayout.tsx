@@ -1,14 +1,14 @@
-import {Layout} from 'antd';
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
+import { Layout } from 'antd';
+import { Footer, Header } from '.';
 
-const {Content} = Layout;
+const { Content } = Layout;
 
 interface Props {
   children: React.ReactNode;
 }
-const AppLayout = ({children}: Props) => {
+
+const AppLayout = ({ children }: Props) => {
   return (
     <Layout
       style={{

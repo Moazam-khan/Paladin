@@ -1,4 +1,4 @@
-import {ThemeConfig} from 'antd';
+import { ThemeConfig } from 'antd';
 
 export const colors = {
   primary: '#FFCB3A',
@@ -7,6 +7,7 @@ export const colors = {
   white: '#ffffff',
   white50: '#FFFFFF80',
   white20: '#FFFFFF33',
+  white10: 'rgba(255, 255, 255, 0.10)',
 };
 
 export const theme: ThemeConfig = {

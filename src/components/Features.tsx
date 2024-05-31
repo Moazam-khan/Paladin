@@ -1,8 +1,8 @@
 import liquidityArrows from '@/assets/arrow.svg';
 import bulb from '@/assets/bulb-square.png';
 import balanceChart from '@/assets/chart.svg';
-import {colors} from '@/utils';
-import {Col, Flex, Row} from 'antd';
+import { colors } from '@/utils';
+import { Col, Row } from 'antd';
 import Text from './Text';
 
 type Props = {};
@@ -26,10 +26,10 @@ const features = [
 ];
 
 const FeatureCard = ({
-  title,
-  description,
-  img,
-}: {
+                       title,
+                       description,
+                       img,
+                     }: {
   title: string;
   description: string;
   img: string;
@@ -41,6 +41,7 @@ const FeatureCard = ({
       border: `0.5px solid ${colors.white50}`,
       position: 'relative',
       overflow: 'hidden',
+      height: '100%',
     }}>
     <div
       style={{
@@ -64,7 +65,7 @@ const FeatureCard = ({
       src={img}
       alt={title}
     />
-    <div style={{padding: 24, marginTop: 56}}>
+    <div style={{ padding: 24, marginTop: 56 }}>
       <Text
         style={{
           fontFamily: 'SpaceGrotesk',
@@ -73,6 +74,7 @@ const FeatureCard = ({
           fontWeight: 700,
           lineHeight: '128%',
           display: 'block',
+          color: colors.primary,
         }}>
         {title}
       </Text>
@@ -83,7 +85,6 @@ const FeatureCard = ({
           fontWeight: 600,
           display: 'block',
           color: colors.white50,
-          maxWidth: 800,
         }}>
         {description}
       </Text>
@@ -105,7 +106,7 @@ const Features = (props: Props) => {
             fontSize: 28,
             textTransform: 'uppercase',
             fontWeight: 700,
-            lineHeight: '192%',
+            lineHeight: '34px',
           }}>
           Own a Piece of History: Introducing ERC-404 <br />
           NFTs
@@ -116,14 +117,13 @@ const Features = (props: Props) => {
             fontSize: 20,
             fontWeight: 600,
             display: 'block',
+            lineHeight: '20px',
             color: colors.white50,
             maxWidth: 800,
           }}>
-          Ever wanted to own a piece of a valuable digital asset, but the price
-          tag felt out of reach? ERC-404 NFTs change the game! This innovative
-          technology allows you to co-own unique digital collectibles with
-          others. Imagine owning a fraction of a famous CryptoPunk or a rare
-          piece of digital art. ERC-404 makes it possible!
+          Ever wanted to own a piece of a valuable digital asset, but the price tag felt out of reach? ERC-404 NFTs
+          change the game! This innovative technology allows you to co-own unique digital collectibles with others.
+          Imagine owning a fraction of a famous CryptoPunk or a rare piece of digital art. ERC-404 makes it possible!
         </Text>
       </Col>
       <Col
@@ -131,11 +131,13 @@ const Features = (props: Props) => {
         style={{
           marginTop: 34,
         }}>
-        <Flex gap={24}>
+        <Row gutter={[24, 24]}>
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <Col xs={24} md={8}>
+              <FeatureCard key={index} {...feature} />
+            </Col>
           ))}
-        </Flex>
+        </Row>
       </Col>
     </Row>
   );
