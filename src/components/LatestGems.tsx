@@ -1,9 +1,10 @@
 import nftBoy from '@/assets/nft-boy.png';
 import nftGirl from '@/assets/nft-girl.png';
-import {colors} from '@/utils';
-import {Col, Row} from 'antd';
+import { colors } from '@/utils';
+import { Col, Row } from 'antd';
 import NftCard from './NftCard';
 import Text from './Text';
+import add from '@/assets/Add.png';
 
 type Props = {};
 
@@ -66,7 +67,7 @@ const LatestGems = (props: Props) => {
           NFTs. Each Piece Tells a Story.
         </Text>
       </Col>
-      <Col span={24} style={{marginTop: 36}}>
+      <Col span={24} style={{ marginTop: 36 }}>
         <Row gutter={[24, 24]}>
           <Col xs={24} sm={16} md={20}>
             <Row gutter={[24, 24]}>
@@ -91,17 +92,21 @@ const LatestGems = (props: Props) => {
             <div
               style={{
                 maxWidth: 200,
-                backgroundColor: '#FFFFFF0D',
-                height: 131,
+                backdropFilter: 'blur(2px)',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
                 display: 'flex',
                 alignItems: 'center',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 padding: 16,
-                border: '0.5px solid #FFFFFF33',
+                border: `1px solid ${colors.white20}`,
+                borderRadius: 8,
                 textAlign: 'center',
+                gap: 14,
               }}>
-              <Text>Mint Yours Now</Text>
+              <img src={add} style={{ height: 44 }} />
+              <Text style={{ fontSize: 18, fontWeight: 500, letterSpacing: 1.8, textTransform: 'uppercase' }}>Mint Yours
+                Now</Text>
             </div>
           </Col>
         </Row>

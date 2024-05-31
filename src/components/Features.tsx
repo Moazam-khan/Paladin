@@ -36,9 +36,9 @@ const FeatureCard = ({
 }) => (
   <div
     style={{
-      backgroundColor: colors.white20,
+      backgroundColor: colors.white15,
       borderRadius: 12,
-      border: `0.5px solid ${colors.white50}`,
+      border: `0.5px solid ${colors.white20}`,
       position: 'relative',
       overflow: 'hidden',
       height: '100%',

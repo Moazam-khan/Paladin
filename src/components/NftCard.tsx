@@ -1,4 +1,4 @@
-import {colors} from '@/utils';
+import { colors } from '@/utils';
 import Button from './Button';
 import Text from './Text';
 
@@ -10,19 +10,22 @@ type Props = {
   img: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const NftCard = ({title, date, tag, price, img, style, ...rest}: Props) => {
+const NftCard = ({ title, date, tag, price, img, style, ...rest }: Props) => {
   return (
     <div
       style={{
+        borderRadius: 8,
         height: '100%',
-        border: '1px solid #FFFFFF33',
+        border: `1px solid ${colors.white20}`,
+        background: 'rgba(255, 255, 255, 0.06)',
+        boxShadow: '0px 1.737px 5.211px 0px rgba(0, 0, 0, 0.15)',
         ...style,
       }}
       {...rest}>
       <img
         src={img}
         width={'100%'}
-        style={{aspectRatio: 1, maxHeight: 290, objectFit: 'cover'}}
+        style={{ aspectRatio: 1, maxHeight: 290, objectFit: 'cover', borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
         alt={title}
       />
       <div
@@ -81,7 +84,7 @@ const NftCard = ({title, date, tag, price, img, style, ...rest}: Props) => {
           margin: '0 24px',
           paddingBottom: 16,
         }}>
-        <Button secondary style={{width: '100%'}}>
+        <Button secondary style={{ width: '100%' }}>
           BUY NFT
         </Button>
       </div>

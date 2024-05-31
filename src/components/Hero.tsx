@@ -1,5 +1,6 @@
 import bgHero from '@/assets/bg-hero.png';
 import heroSide from '@/assets/hero-sider.png';
+import infoCircle from '@/assets/info-circle.png';
 import { colors } from '@/utils';
 import { Col, Flex, Row } from 'antd';
 import Button from './Button';
@@ -64,14 +65,21 @@ const Hero = (props: Props) => {
           </Col>
           <Col span={sm ? 12 : 24} style={{ display: 'grid' }}>
             <Button size={'large'} block>Mint your ERC404</Button>
-            <Text
-              style={{
-                fontFamily: 'DarkerGrotesque',
-                color: colors.white50,
-                textAlign: 'right',
-              }}>
-              (0.03 ETH)
-            </Text>
+            <Row justify={'end'} align={'middle'} gutter={4}>
+              <Col><Text
+                style={{
+                  fontFamily: 'DarkerGrotesque',
+                  color: colors.white50,
+                  fontWeight: 600,
+                  fontSize: 16,
+                }}>
+                (0.03 ETH)
+              </Text>
+              </Col>
+              <Col style={{ paddingTop: 7 }}>
+                <img src={infoCircle} style={{ height: 14 }} />
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Col>

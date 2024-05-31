@@ -5,9 +5,11 @@ export const colors = {
   secondary: '#354DFE',
   secondary90: '#354DFEEE',
   white: '#ffffff',
-  white50: '#FFFFFF80',
-  white20: '#FFFFFF33',
+  white50: 'rgba(255, 255, 255, 0.50)',
+  white20: 'rgba(255, 255, 255, 0.20)',
+  white15: 'rgba(255, 255, 255, 0.15)',
   white10: 'rgba(255, 255, 255, 0.10)',
+  white5: 'rgba(255, 255, 255, 0.05)',
 };
 
 export const theme: ThemeConfig = {
