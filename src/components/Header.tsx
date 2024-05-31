@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Button from './Button';
 import Text from './Text';
 import { useBreakpoint } from '@/hooks';
+import Sidebar from '@/components/Sidebar';
 
 type Props = {};
 
@@ -54,6 +55,7 @@ const MenuItem = ({
 
 const Header = (props: Props) => {
   const [activeMenu, setActiveMenu] = useState('Home');
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const { md } = useBreakpoint();
 
   return (
@@ -100,9 +102,10 @@ const Header = (props: Props) => {
             style={{ alignItems: 'center', borderRadius: 10, backgroundColor: colors.white10, padding: 10, gap: 16 }}>
             <img src={wallet} style={{ width: 24 }} />
             <div style={{ height: 24, borderRight: '1px solid rgba(255, 255, 255, 0.10)' }} />
-            <img src={menu} style={{ width: 24 }} />
+            <img src={menu} style={{ width: 24 }} onClick={() => setSidebarOpen(true)} />
           </Row>}
       </Flex>
+      {!md && <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />}
     </div>
   );
 };

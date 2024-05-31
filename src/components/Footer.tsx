@@ -146,7 +146,7 @@ const Footer = (props: Props) => {
             color: colors.white50,
             marginTop: 36,
           }}>
-          © 2024 PALADINS, all rights reserved
+          &#169; 2024 PALADINS, all rights reserved
         </Text>
       </Col>
     </Row>
