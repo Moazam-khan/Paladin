@@ -1,22 +1,24 @@
 import logo from '@/assets/logo.png';
 import menu from '@/assets/menu.png';
 import wallet from '@/assets/wallet-2.png';
-import { colors } from '@/utils';
-import { Flex, Row } from 'antd';
-import { useState } from 'react';
+import Sidebar from '@/components/Sidebar';
+import {useBreakpoint} from '@/hooks';
+import {colors, truncateString} from '@/utils';
+import {useWeb3Modal} from '@web3modal/wagmi/react';
+import {Flex, Row} from 'antd';
+import {useState} from 'react';
+import {useAccount} from 'wagmi';
 import Button from './Button';
 import Text from './Text';
-import { useBreakpoint } from '@/hooks';
-import Sidebar from '@/components/Sidebar';
 
 type Props = {};
 
 const MenuItem = ({
-                    active = false,
-                    style,
-                    children,
-                    ...rest
-                  }: {
+  active = false,
+  style,
+  children,
+  ...rest
+}: {
   active: boolean;
 } & React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -56,7 +58,9 @@ const MenuItem = ({
 const Header = (props: Props) => {
   const [activeMenu, setActiveMenu] = useState('Home');
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
-  const { md } = useBreakpoint();
+  const {md} = useBreakpoint();
+  const {open} = useWeb3Modal();
+  const {address} = useAccount();
 
   return (
     <div
@@ -70,8 +74,8 @@ const Header = (props: Props) => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <img src={logo} style={{ height: md ? 22 : 18 }} />
-        <Flex gap={46} style={{ display: md ? 'flex' : 'none' }}>
+        <img src={logo} style={{height: md ? 22 : 18}} />
+        <Flex gap={46} style={{display: md ? 'flex' : 'none'}}>
           <MenuItem
             onClick={() => {
               setActiveMenu('Home');
@@ -97,13 +101,41 @@ const Header = (props: Props) => {
             Account
           </MenuItem>
         </Flex>
-        {md ? <Button>Connect Wallet</Button> :
+        {md ? (
+          <Button
+            className="text-tail-end"
+            onClick={() => {
+              if (address) {
+                open({view: 'Account'});
+              } else {
+                open({view: 'Networks'});
+              }
+            }}>
+            {address ? truncateString(address, 12) : 'Connect Wallet'}
+          </Button>
+        ) : (
           <Row
-            style={{ alignItems: 'center', borderRadius: 10, backgroundColor: colors.white10, padding: 10, gap: 16 }}>
-            <img src={wallet} style={{ width: 24 }} />
-            <div style={{ height: 24, borderRight: '1px solid rgba(255, 255, 255, 0.10)' }} />
-            <img src={menu} style={{ width: 24 }} onClick={() => setSidebarOpen(true)} />
-          </Row>}
+            style={{
+              alignItems: 'center',
+              borderRadius: 10,
+              backgroundColor: colors.white10,
+              padding: 10,
+              gap: 16,
+            }}>
+            <img src={wallet} style={{width: 24}} />
+            <div
+              style={{
+                height: 24,
+                borderRight: '1px solid rgba(255, 255, 255, 0.10)',
+              }}
+            />
+            <img
+              src={menu}
+              style={{width: 24}}
+              onClick={() => setSidebarOpen(true)}
+            />
+          </Row>
+        )}
       </Flex>
       {!md && <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />}
     </div>
