@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@privy-io/react-auth": "^1.67.0",
     "@tanstack/react-query": "^5.40.0",
     "@web3modal/wagmi": "^4.2.3",
     "antd": "^5.17.4",
+    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
