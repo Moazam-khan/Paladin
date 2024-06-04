@@ -84,35 +84,9 @@ const Header = (props: Props) => {
         let backendResponse = null;
 
         switch (loginMethod) {
-          case "email":
-            // handle email login
-            break;
-          case "sms":
-            // handle sms login
-            break;
           case "siwe":
             // handle siwe(wallet) login
             backendResponse = await handleWalletLogin(linkedAccount);
-            break;
-          case "apple":
-            // handle apple login
-            break;
-          case "discord":
-            // handle discord login
-            break;
-          case "github":
-            // handle github login
-            break;
-          case "google":
-            // handle google login
-            break;
-          case "linkedin":
-            // handle linkedin login
-            break;
-          case "spotify":
-            // handle spotify login
-            break;
-          case "tiktok":
             // handle tiktok login
             break;
           case "twitter":
