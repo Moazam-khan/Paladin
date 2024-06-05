@@ -1,11 +1,11 @@
-import { WalletLogin } from "@/api/ApiCalls/User";
+import { Login } from "@/api/ApiCalls/User";
 
 export const handleWalletLogin = async (wallet: any) => {
   try {
     const payload = {
       wallet_address: wallet.address,
     };
-    const data = await WalletLogin(payload);
+    const data = await Login(payload);
     return data;
   } catch (e) {
     console.log(e);
@@ -17,7 +17,7 @@ export const handleTwitterLogin = async (wallet: any) => {
     const payload = {
       username: wallet.username,
     };
-    const data = await WalletLogin(payload);
+    const data = await Login(payload, "Twitter");
     return data;
   } catch (e) {
     console.log(e);

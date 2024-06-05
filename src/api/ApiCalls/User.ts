@@ -11,9 +11,9 @@ interface GetWalletLogin {
   status: string;
 }
 
-export const WalletLogin = async (payload: any) => {
+export const Login = async (payload: any, auth_type = "WALLET") => {
   try {
-    const endPoint = "api/user/login/";
+    const endPoint = `api/user/login/?auth_type=${auth_type}`;
     const res = await axios.post<GetWalletLogin>(endPoint, payload);
     if (!res?.data) throw "Something went wrong";
     return res.data.data;
