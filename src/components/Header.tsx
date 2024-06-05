@@ -90,6 +90,7 @@ const Header = (props: Props) => {
             // handle tiktok login
             break;
           case "twitter":
+            console.log(linkedAccount);
             // handle twitter login
             break;
           default:
