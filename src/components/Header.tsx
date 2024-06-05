@@ -108,7 +108,7 @@ const Header = (props: Props) => {
       }
     },
     onError: (error) => {
-      console.log(error);
+      console.log(error, "--------error");
     },
   });
 

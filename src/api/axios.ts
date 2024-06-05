@@ -3,7 +3,8 @@ import axiosClient, { AxiosInstance } from "axios";
 import { clean } from "../utils";
 
 const TIMEOUT = 35000; //15sec
-const SERVER_URL = import.meta.env.VITE_API_HOST || "";
+const SERVER_URL =
+  import.meta.env.VITE_API_HOST || "https://api.paladins.baboons.tech";
 
 const axios: AxiosInstance = axiosClient.create({
   baseURL: SERVER_URL,
