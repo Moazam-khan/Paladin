@@ -11,3 +11,15 @@ export const handleWalletLogin = async (wallet: any) => {
     console.log(e);
   }
 };
+
+export const handleTwitterLogin = async (wallet: any) => {
+  try {
+    const payload = {
+      username: wallet.username,
+    };
+    const data = await WalletLogin(payload);
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};

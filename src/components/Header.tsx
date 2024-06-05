@@ -11,7 +11,7 @@ import { useAccount, useDisconnect } from "wagmi";
 import Button from "./Button";
 import Text from "./Text";
 import { usePrivy, useLogin, useLogout } from "@privy-io/react-auth";
-import { handleWalletLogin } from "@/utils/auth";
+import { handleTwitterLogin, handleWalletLogin } from "@/utils/auth";
 type Props = {};
 
 const MenuItem = ({
@@ -90,11 +90,9 @@ const Header = (props: Props) => {
             // handle tiktok login
             break;
           case "twitter":
-            console.log(linkedAccount);
-            // handle twitter login
+            backendResponse = await handleTwitterLogin(linkedAccount);
             break;
           default:
-            // handle unknown login method
             break;
         }
 
