@@ -21,7 +21,6 @@ export const getUserNfts = async (
 ) => {
   try {
     const endPoint = '/api/nfts/account/';
-    // =${collection}&chain=${chain}&address=${address};
     const res = await axios.get<{
       data: NFT[];
       success: boolean;

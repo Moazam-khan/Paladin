@@ -1,4 +1,5 @@
 import {colors} from '@/utils';
+import {format} from 'date-fns';
 import Button from './Button';
 import Text from './Text';
 
@@ -48,6 +49,7 @@ const NftCard = ({
           borderBottom: '1px solid #FFFFFF33',
         }}>
         <Text
+          className="clamp-2-lines"
           style={{
             fontWeight: 500,
             fontSize: 18,
@@ -62,7 +64,7 @@ const NftCard = ({
             fontWeight: 600,
             display: 'block',
           }}>
-          {updated_at}
+          {format(updated_at, 'dd/MM/yyyy hh:mm a')}
         </Text>
         <Text
           style={{

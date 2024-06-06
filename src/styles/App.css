@@ -34,3 +34,10 @@
 .ant-modal-root .ant-modal {
   margin: 0;
 }
+
+.clamp-2-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
