@@ -1,4 +1,4 @@
-export interface NFT {
+declare interface NFT {
   identifier: string;
   collection: string;
   contract: string;

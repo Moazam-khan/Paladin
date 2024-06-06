@@ -1,4 +1,4 @@
-import { ThemeConfig } from 'antd';
+import {ThemeConfig} from 'antd';
 
 export const colors = {
   primary: '#FFCB3A',
@@ -23,6 +23,9 @@ export const theme: ThemeConfig = {
       colorPrimary: 'transparent',
       colorPrimaryHover: 'transparent',
       borderRadius: 0,
+    },
+    Spin: {
+      colorPrimary: colors.primary,
     },
   },
   token: {
