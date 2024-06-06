@@ -1,68 +1,82 @@
-import nftBoy from '@/assets/nft-boy.png';
-import nftGirl from '@/assets/nft-girl.png';
-import { colors } from '@/utils';
-import { Col, Row } from 'antd';
-import NftCard from './NftCard';
-import Text from './Text';
-import add from '@/assets/Add.png';
+import nftBoy from "@/assets/nft-boy.png";
+import nftGirl from "@/assets/nft-girl.png";
+import { colors } from "@/utils";
+import { Col, Row } from "antd";
+import NftCard from "./NftCard";
+import Text from "./Text";
+import add from "@/assets/Add.png";
+import { useEffect, useState } from "react";
+import { getNFTs } from "@/api/ApiCalls/nfts";
 
 type Props = {};
 
 const fakeGems = [
   {
-    title: 'PALADINS #38916',
-    date: new Date('2021-09-01'),
-    tag: 'gaming',
+    title: "PALADINS #38916",
+    date: new Date("2021-09-01"),
+    tag: "gaming",
     img: nftGirl,
     price: 1,
   },
   {
-    title: 'PALADINS #38917',
-    date: new Date('2021-09-01'),
-    tag: 'digital art',
+    title: "PALADINS #38917",
+    date: new Date("2021-09-01"),
+    tag: "digital art",
     price: 0.000123,
     img: nftGirl,
   },
   {
-    title: 'PALADINS #38969',
-    date: new Date('2021-09-01'),
-    tag: 'gaming',
+    title: "PALADINS #38969",
+    date: new Date("2021-09-01"),
+    tag: "gaming",
     price: 3.09,
     img: nftGirl,
   },
   {
-    title: 'PALADINS #38918',
-    date: new Date('2021-09-01'),
-    tag: 'crew',
+    title: "PALADINS #38918",
+    date: new Date("2021-09-01"),
+    tag: "crew",
     price: 0.8,
     img: nftBoy,
   },
 ];
 
 const LatestGems = (props: Props) => {
+  const [nfts, setNFTs] = useState([]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getNFTs();
+      setNFTs(data.data);
+    };
+    loadData();
+  }, []);
   return (
     <Row
       style={{
         margin: 24,
-      }}>
+      }}
+    >
       <Col span={24}>
         <Text
           style={{
-            fontFamily: 'SpaceGrotesk',
+            fontFamily: "SpaceGrotesk",
             fontSize: 28,
             fontWeight: 700,
-            textTransform: 'uppercase',
-          }}>
-          Discover the Latest GEMS{' '}
+            textTransform: "uppercase",
+          }}
+        >
+          Discover the Latest GEMS{" "}
         </Text>
         <Text
           style={{
-            fontFamily: 'DarkerGrotesque',
+            fontFamily: "DarkerGrotesque",
             fontSize: 20,
             fontWeight: 600,
-            display: 'block',
+            display: "block",
             color: colors.white50,
-          }}>
+          }}
+        >
           Explore the Freshest Additions to Our Growing Collection of Unique
           NFTs. Each Piece Tells a Story.
         </Text>
@@ -71,7 +85,7 @@ const LatestGems = (props: Props) => {
         <Row gutter={[24, 24]}>
           <Col xs={24} sm={16} md={20}>
             <Row gutter={[24, 24]}>
-              {fakeGems.map((gem, index) => (
+              {nfts.map((gem: any, index) => (
                 <Col xs={24} md={8} lg={6}>
                   <NftCard
                     key={index}
@@ -92,21 +106,30 @@ const LatestGems = (props: Props) => {
             <div
               style={{
                 maxWidth: 200,
-                backdropFilter: 'blur(2px)',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',
-                justifyContent: 'center',
+                backdropFilter: "blur(2px)",
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "center",
                 padding: 16,
                 border: `1px solid ${colors.white20}`,
                 borderRadius: 8,
-                textAlign: 'center',
+                textAlign: "center",
                 gap: 14,
-              }}>
+              }}
+            >
               <img src={add} style={{ height: 44 }} />
-              <Text style={{ fontSize: 18, fontWeight: 500, letterSpacing: 1.8, textTransform: 'uppercase' }}>Mint Yours
-                Now</Text>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: 500,
+                  letterSpacing: 1.8,
+                  textTransform: "uppercase",
+                }}
+              >
+                Mint Yours Now
+              </Text>
             </div>
           </Col>
         </Row>

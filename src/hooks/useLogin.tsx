@@ -1,4 +1,4 @@
-import {handleWalletLogin} from '@/utils/auth';
+import {handleTwitterLogin, handleWalletLogin} from '@/utils/auth';
 import {
   useLogout,
   usePrivy,
@@ -21,42 +21,15 @@ const useLogin = () => {
         let backendResponse = null;
 
         switch (loginMethod) {
-          case 'email':
-            // handle email login
-            break;
-          case 'sms':
-            // handle sms login
-            break;
           case 'siwe':
             // handle siwe(wallet) login
             backendResponse = await handleWalletLogin(linkedAccount);
-            break;
-          case 'apple':
-            // handle apple login
-            break;
-          case 'discord':
-            // handle discord login
-            break;
-          case 'github':
-            // handle github login
-            break;
-          case 'google':
-            // handle google login
-            break;
-          case 'linkedin':
-            // handle linkedin login
-            break;
-          case 'spotify':
-            // handle spotify login
-            break;
-          case 'tiktok':
             // handle tiktok login
             break;
           case 'twitter':
-            // handle twitter login
+            backendResponse = await handleTwitterLogin(linkedAccount);
             break;
           default:
-            // handle unknown login method
             break;
         }
 
@@ -71,7 +44,7 @@ const useLogin = () => {
       }
     },
     onError: (error) => {
-      console.log(error);
+      console.log(error, '--------error');
     },
   });
 
