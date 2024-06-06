@@ -1,17 +1,16 @@
-import logo from "@/assets/logo.png";
-import menu from "@/assets/menu.png";
-import wallet from "@/assets/wallet-2.png";
-import Sidebar from "@/components/Sidebar";
-import { useBreakpoint } from "@/hooks";
-import { colors, truncateString } from "@/utils";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { Flex, Row } from "antd";
-import { useState } from "react";
-import { useAccount, useDisconnect } from "wagmi";
-import Button from "./Button";
-import Text from "./Text";
-import { usePrivy, useLogin, useLogout } from "@privy-io/react-auth";
-import { handleWalletLogin } from "@/utils/auth";
+import logo from '@/assets/logo.png';
+import menu from '@/assets/menu.png';
+import wallet from '@/assets/wallet-2.png';
+import Sidebar from '@/components/Sidebar';
+import {useBreakpoint, useLogin} from '@/hooks';
+import {colors, truncateString} from '@/utils';
+import {usePrivy} from '@privy-io/react-auth';
+import {Flex, Row} from 'antd';
+import {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {useAccount} from 'wagmi';
+import Button from './Button';
+import Text from './Text';
 type Props = {};
 
 const MenuItem = ({
@@ -28,28 +27,26 @@ const MenuItem = ({
   <div
     style={{
       height: 72,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       borderBottom: active
         ? `1px solid ${colors.primary}`
         : `1px solid transparent`,
-      position: "relative",
+      position: 'relative',
       top: 1,
-      cursor: "pointer",
-      transition: "all 0.2s ease",
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
     }}
-    {...rest}
-  >
-    {typeof children === "string" ? (
+    {...rest}>
+    {typeof children === 'string' ? (
       <Text
         style={{
           fontSize: 18,
-          position: "relative",
+          position: 'relative',
           bottom: 1,
           color: active ? colors.primary : colors.white50,
-        }}
-      >
+        }}>
         {children}
       </Text>
     ) : (
@@ -58,140 +55,89 @@ const MenuItem = ({
   </div>
 );
 
-const Header = (props: Props) => {
-  const [activeMenu, setActiveMenu] = useState("Home");
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
-  const { md } = useBreakpoint();
-  const { address } = useAccount();
-  const { ready, authenticated } = usePrivy();
-  const [loading, setLoading] = useState<boolean>(false);
+const menuFromPath = (path: string) => {
+  switch (path) {
+    case '/':
+      return 'Home';
+    case '/mint':
+      return 'Mint';
+    case '/staking':
+      return 'Staking';
+    case '/myaccount':
+      return 'Account';
+    default:
+      return 'Home';
+  }
+};
 
-  const { disconnect } = useDisconnect();
+const Header = (props: Props) => {
+  const [activeMenu, setActiveMenu] = useState('Home');
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const {md} = useBreakpoint();
+  const {address} = useAccount();
+  const {ready, authenticated} = usePrivy();
+  const [loading, setLoading] = useState<boolean>(false);
+  let location = useLocation();
+  const navigate = useNavigate();
+  const {handleLogin, handleLogout} = useLogin();
+
+  useEffect(() => {
+    setActiveMenu(menuFromPath(location.pathname));
+  }, [location]);
 
   const disableLogin = !ready || (ready && authenticated);
   const disableLogout = !ready || (ready && !authenticated);
 
-  const { login } = useLogin({
-    onComplete: async (
-      user,
-      isNewUser,
-      wasAlreadyAuthenticated,
-      loginMethod,
-      linkedAccount
-    ) => {
-      if (!wasAlreadyAuthenticated) {
-        // if user was not already authenticated log them in in backend
-        let backendResponse = null;
-
-        switch (loginMethod) {
-          case "email":
-            // handle email login
-            break;
-          case "sms":
-            // handle sms login
-            break;
-          case "siwe":
-            // handle siwe(wallet) login
-            backendResponse = await handleWalletLogin(linkedAccount);
-            break;
-          case "apple":
-            // handle apple login
-            break;
-          case "discord":
-            // handle discord login
-            break;
-          case "github":
-            // handle github login
-            break;
-          case "google":
-            // handle google login
-            break;
-          case "linkedin":
-            // handle linkedin login
-            break;
-          case "spotify":
-            // handle spotify login
-            break;
-          case "tiktok":
-            // handle tiktok login
-            break;
-          case "twitter":
-            // handle twitter login
-            break;
-          default:
-            // handle unknown login method
-            break;
-        }
-
-        if (backendResponse) {
-          // save access token and refresh token in local storage
-          localStorage.setItem("accessToken", backendResponse.access_token);
-          localStorage.setItem("refreshToken", backendResponse.refresh_token);
-        } else {
-          logout();
-          disconnect();
-        }
-      }
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  const { logout } = useLogout({
-    onSuccess: () => {
-      disconnect();
-    },
-  });
-
   const onLogout = async () => {
     setLoading(true);
-    await logout();
+    await handleLogout();
     setLoading(false);
   };
 
   return (
     <div
       style={{
-        margin: "0 24px",
+        margin: '0 24px',
         borderBottom: `1px solid ${colors.white20}`,
-      }}
-    >
+      }}>
       <Flex
         style={{
           height: 72,
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <img src={logo} style={{ height: md ? 22 : 18 }} />
-        <Flex gap={46} style={{ display: md ? "flex" : "none" }}>
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <img src={logo} style={{height: md ? 22 : 18}} />
+        <Flex gap={46} style={{display: md ? 'flex' : 'none'}}>
           <MenuItem
             onClick={() => {
-              setActiveMenu("Home");
+              // setActiveMenu('Home');
+              navigate('/');
             }}
-            active={activeMenu === "Home"}
-          >
+            active={activeMenu === 'Home'}>
             Home
           </MenuItem>
           <MenuItem
             onClick={() => {
-              setActiveMenu("Mint");
+              // setActiveMenu('Mint');
+              navigate('/mint');
             }}
-            active={activeMenu === "Mint"}
-          >
+            active={activeMenu === 'Mint'}>
             Mint
           </MenuItem>
           <MenuItem
-            onClick={() => setActiveMenu("Staking")}
-            active={activeMenu === "Staking"}
-          >
+            onClick={() =>
+              // setActiveMenu('Staking')
+              navigate('/staking')
+            }
+            active={activeMenu === 'Staking'}>
             Staking
           </MenuItem>
           <MenuItem
-            onClick={() => setActiveMenu("Account")}
-            active={activeMenu === "Account"}
-          >
+            onClick={() =>
+              // setActiveMenu('Account')
+              navigate('/myaccount')
+            }
+            active={activeMenu === 'Account'}>
             Account
           </MenuItem>
         </Flex>
@@ -202,8 +148,7 @@ const Header = (props: Props) => {
                 className="text-tail-end"
                 disabled={disableLogout}
                 loading={loading}
-                onClick={onLogout}
-              >
+                onClick={onLogout}>
                 Logout
               </Button>
             ) : (
@@ -211,14 +156,13 @@ const Header = (props: Props) => {
                 <Button
                   className="text-tail-end"
                   disabled={disableLogin}
-                  onClick={login}
-                  loading={!ready}
-                >
+                  onClick={handleLogin}
+                  loading={!ready}>
                   {ready && !authenticated
                     ? address
                       ? truncateString(address, 12)
-                      : "Connect Wallet"
-                    : ""}
+                      : 'Connect Wallet'
+                    : ''}
                 </Button>
               </>
             )}
@@ -226,23 +170,22 @@ const Header = (props: Props) => {
         ) : (
           <Row
             style={{
-              alignItems: "center",
+              alignItems: 'center',
               borderRadius: 10,
               backgroundColor: colors.white10,
               padding: 10,
               gap: 16,
-            }}
-          >
-            <img src={wallet} style={{ width: 24 }} />
+            }}>
+            <img src={wallet} style={{width: 24}} />
             <div
               style={{
                 height: 24,
-                borderRight: "1px solid rgba(255, 255, 255, 0.10)",
+                borderRight: '1px solid rgba(255, 255, 255, 0.10)',
               }}
             />
             <img
               src={menu}
-              style={{ width: 24 }}
+              style={{width: 24}}
               onClick={() => setSidebarOpen(true)}
             />
           </Row>

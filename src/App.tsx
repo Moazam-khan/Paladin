@@ -1,8 +1,7 @@
-import { AppLayout } from "@/components";
-import { Home, Nfts } from "@/pages";
-import "@/styles/App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useLogin } from "@privy-io/react-auth";
+import {AppLayout} from '@/components';
+import {Home, MyAccount, Nfts} from '@/pages';
+import '@/styles/App.css';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
         <Routes>
           <Route path="*" element={<Home />} />
           <Route path="nfts" element={<Nfts />} />
+          <Route path="myAccount" element={<MyAccount />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
