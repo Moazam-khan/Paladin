@@ -1,8 +1,8 @@
 import liquidityArrows from '@/assets/arrow.svg';
 import bulb from '@/assets/bulb-square.png';
 import balanceChart from '@/assets/chart.svg';
-import { colors } from '@/utils';
-import { Col, Row } from 'antd';
+import {colors} from '@/utils';
+import {Col, Row} from 'antd';
 import Text from './Text';
 
 type Props = {};
@@ -26,10 +26,10 @@ const features = [
 ];
 
 const FeatureCard = ({
-                       title,
-                       description,
-                       img,
-                     }: {
+  title,
+  description,
+  img,
+}: {
   title: string;
   description: string;
   img: string;
@@ -39,52 +39,33 @@ const FeatureCard = ({
       backgroundColor: colors.white15,
       borderRadius: 12,
       border: `0.5px solid ${colors.white20}`,
-      position: 'relative',
       overflow: 'hidden',
       height: '100%',
+      padding: '29px 33px',
     }}>
-    <div
-      style={{
-        width: '100%',
-        height: 88,
-        backgroundColor: '#FFFFFF05',
-        position: 'absolute',
-        zIndex: -10,
-      }}
-    />
-
-    <img
-      style={{
-        position: 'relative',
-        zIndex: 10,
-        left: 24,
-        top: 34,
-      }}
-      height={108}
-      width={108}
-      src={img}
-      alt={title}
-    />
-    <div style={{ padding: 24, marginTop: 56 }}>
+    <img height={108} width={108} src={img} alt={title} />
+    <div style={{marginTop: 56}}>
       <Text
         style={{
           fontFamily: 'SpaceGrotesk',
           fontSize: 28,
           textTransform: 'uppercase',
           fontWeight: 700,
-          lineHeight: '128%',
+          lineHeight: '112%',
           display: 'block',
           color: colors.primary,
+          marginBottom: 8,
         }}>
         {title}
       </Text>
       <Text
         style={{
           fontFamily: 'DarkerGrotesque',
-          fontSize: 24,
+          fontSize: 22,
           fontWeight: 600,
           display: 'block',
           color: colors.white50,
+          lineHeight: '100%',
         }}>
         {description}
       </Text>
@@ -121,9 +102,11 @@ const Features = (props: Props) => {
             color: colors.white50,
             maxWidth: 800,
           }}>
-          Ever wanted to own a piece of a valuable digital asset, but the price tag felt out of reach? ERC-404 NFTs
-          change the game! This innovative technology allows you to co-own unique digital collectibles with others.
-          Imagine owning a fraction of a famous CryptoPunk or a rare piece of digital art. ERC-404 makes it possible!
+          Ever wanted to own a piece of a valuable digital asset, but the price
+          tag felt out of reach? ERC-404 NFTs change the game! This innovative
+          technology allows you to co-own unique digital collectibles with
+          others. Imagine owning a fraction of a famous CryptoPunk or a rare
+          piece of digital art. ERC-404 makes it possible!
         </Text>
       </Col>
       <Col

@@ -12,6 +12,12 @@ export const colors = {
   white10: 'rgba(255, 255, 255, 0.10)',
   white5: 'rgba(255, 255, 255, 0.05)',
   black15: 'rgba(0, 0, 0, 0.15)',
+
+  light50: '#FFFFFF0D',
+  light200: '#FFFFFF26',
+  textContrast: '#FFCB3A',
+  textDescriptionOnBlack: '#7D7D7D',
+  btnPrimaryBorder: '#525252',
 };
 
 export const theme: ThemeConfig = {

@@ -46,7 +46,7 @@ const NftCard = ({
         style={{
           margin: '0 24px',
           padding: '16px 0',
-          borderBottom: '1px solid #FFFFFF33',
+          borderBottom: owned ? 'unset' : '1px solid #FFFFFF33',
         }}>
         <Text
           className="clamp-2-lines"
@@ -75,34 +75,38 @@ const NftCard = ({
           }}>
           #{collection}
         </Text>
-        <div
-          style={{
-            padding: 8,
-            backgroundColor: '#FFFFFF1A',
-            borderRadius: 8,
-            marginTop: 10,
-            width: 'fit-content',
-          }}>
-          <Text
+        {!owned && (
+          <div
             style={{
-              fontFamily: 'DarkerGrotesque',
-              fontWeight: 600,
+              padding: 8,
+              backgroundColor: '#FFFFFF1A',
+              borderRadius: 8,
+              marginTop: 10,
+              width: 'fit-content',
             }}>
-            2 PAL
-          </Text>
-        </div>
+            <Text
+              style={{
+                fontFamily: 'DarkerGrotesque',
+                fontWeight: 600,
+              }}>
+              2 PAL
+            </Text>
+          </div>
+        )}
       </div>
 
-      <div
-        style={{
-          paddingTop: 16,
-          margin: '0 24px',
-          paddingBottom: 16,
-        }}>
-        <Button secondary style={{width: '100%'}}>
-          {owned ? 'Transfer' : 'BUY NFT'}
-        </Button>
-      </div>
+      {!owned && (
+        <div
+          style={{
+            paddingTop: 16,
+            margin: '0 24px',
+            paddingBottom: 16,
+          }}>
+          <Button secondary style={{width: '100%'}}>
+            BUY NFT
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

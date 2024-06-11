@@ -97,7 +97,7 @@ const Header = (props: Props) => {
   return (
     <div
       style={{
-        margin: '0 24px',
+        margin: md ? '0 24px' : '0 12px',
         borderBottom: `1px solid ${colors.white20}`,
       }}>
       <Flex
