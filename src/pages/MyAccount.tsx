@@ -52,7 +52,7 @@ const MyAccount = (props: Props) => {
         <Button
           className="text-tail-end"
           disabled={!ready}
-          onClick={handleLogin}
+          onClick={!address && authenticated ? linkWallet : handleLogin}
           loading={!ready}
         >
           Click to connect your wallet

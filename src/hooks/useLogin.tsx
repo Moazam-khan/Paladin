@@ -1,14 +1,14 @@
-import {handleTwitterLogin, handleWalletLogin} from '@/utils/auth';
+import { handleTwitterLogin, handleWalletLogin } from "@/utils/auth";
 import {
   useLogout,
   usePrivy,
   useLogin as usePrivyLogin,
-} from '@privy-io/react-auth';
-import {useDisconnect} from 'wagmi';
+} from "@privy-io/react-auth";
+import { useDisconnect } from "wagmi";
 
 const useLogin = () => {
-  const {ready, authenticated} = usePrivy();
-  const {login} = usePrivyLogin({
+  const { ready, authenticated } = usePrivy();
+  const { login } = usePrivyLogin({
     onComplete: async (
       user,
       isNewUser,
@@ -21,12 +21,12 @@ const useLogin = () => {
         let backendResponse = null;
 
         switch (loginMethod) {
-          case 'siwe':
+          case "siwe":
             // handle siwe(wallet) login
             backendResponse = await handleWalletLogin(linkedAccount);
             // handle tiktok login
             break;
-          case 'twitter':
+          case "twitter":
             backendResponse = await handleTwitterLogin(linkedAccount);
             break;
           default:
@@ -35,8 +35,8 @@ const useLogin = () => {
 
         if (backendResponse) {
           // save access token and refresh token in local storage
-          localStorage.setItem('accessToken', backendResponse.access_token);
-          localStorage.setItem('refreshToken', backendResponse.refresh_token);
+          localStorage.setItem("accessToken", backendResponse.access_token);
+          localStorage.setItem("refreshToken", backendResponse.refresh_token);
         } else {
           logout();
           disconnect();
@@ -44,12 +44,12 @@ const useLogin = () => {
       }
     },
     onError: (error) => {
-      console.log(error, '--------error');
+      console.log(error, "--------error");
     },
   });
 
-  const {disconnect} = useDisconnect();
-  const {logout} = useLogout();
+  const { disconnect } = useDisconnect();
+  const { logout } = useLogout();
 
   const handleLogin = async () => {
     if (ready && !authenticated) {
@@ -64,7 +64,7 @@ const useLogin = () => {
     }
   };
 
-  return {handleLogin, handleLogout};
+  return { handleLogin, handleLogout };
 };
 
 export default useLogin;
