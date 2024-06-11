@@ -23,11 +23,11 @@ const useLogin = () => {
         switch (loginMethod) {
           case "siwe":
             // handle siwe(wallet) login
-            backendResponse = await handleWalletLogin(linkedAccount);
+            backendResponse = await handleWalletLogin(linkedAccount, user);
             // handle tiktok login
             break;
           case "twitter":
-            backendResponse = await handleTwitterLogin(linkedAccount);
+            backendResponse = await handleTwitterLogin(linkedAccount, user);
             break;
           default:
             break;

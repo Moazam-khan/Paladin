@@ -1,11 +1,12 @@
 import { Login } from "@/api/ApiCalls/User";
 
-export const handleWalletLogin = async (wallet: any) => {
+export const handleWalletLogin = async (wallet: any, user: any) => {
   try {
     const payload = {
-      id: wallet.id,
+      id: user.id,
       wallet_address: wallet.address,
     };
+
     const data = await Login(payload);
     return data;
   } catch (e) {
@@ -13,10 +14,10 @@ export const handleWalletLogin = async (wallet: any) => {
   }
 };
 
-export const handleTwitterLogin = async (account: any) => {
+export const handleTwitterLogin = async (account: any, user: any) => {
   try {
     const payload = {
-      id: account.id,
+      id: user.id,
       username: account.username,
       profile_picture: account?.profilePictureUrl || "",
     };
