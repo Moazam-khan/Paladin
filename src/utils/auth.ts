@@ -14,9 +14,9 @@ export const handleWalletLogin = async (wallet: any) => {
 
 export const handleTwitterLogin = async (account: any) => {
   try {
-    console.log(account);
     const payload = {
       username: account.username,
+      profile_picture: account?.profilePictureUrl || "",
     };
     const data = await Login(payload, "Twitter");
     return data;
