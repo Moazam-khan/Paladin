@@ -16,7 +16,7 @@ const useLogin = () => {
       loginMethod,
       linkedAccount
     ) => {
-      if (!wasAlreadyAuthenticated) {
+      if (!wasAlreadyAuthenticated && isNewUser) {
         // if user was not already authenticated log them in in backend
         let backendResponse = null;
 
@@ -34,9 +34,6 @@ const useLogin = () => {
         }
 
         if (backendResponse) {
-          // save access token and refresh token in local storage
-          localStorage.setItem("accessToken", backendResponse.access_token);
-          localStorage.setItem("refreshToken", backendResponse.refresh_token);
         } else {
           logout();
           disconnect();
