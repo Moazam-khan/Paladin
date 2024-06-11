@@ -37,7 +37,6 @@ const MyAccount = (props: Props) => {
     getNfts();
   }, [address]);
 
-  console.log(user, "-----user");
   // if (!address)
   if (!address || !authenticated)
     return (
