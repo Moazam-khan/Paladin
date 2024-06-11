@@ -13,6 +13,7 @@ export const handleWalletLogin = async (wallet: any) => {
 };
 
 export const handleTwitterLogin = async (account: any) => {
+  console.log(account);
   try {
     const payload = {
       username: account.username,
