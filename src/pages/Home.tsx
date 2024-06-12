@@ -8,8 +8,12 @@ const Home = () => {
       <Col span={24}>
         <Hero />
       </Col>
-      <Col span={24}>{/* <LatestGems /> */}</Col>
-      <Col span={24}>{/* <Features /> */}</Col>
+      <Col span={24}>
+        <LatestGems />
+      </Col>
+      <Col span={24}>
+        <Features />
+      </Col>
     </Row>
   );
 };
