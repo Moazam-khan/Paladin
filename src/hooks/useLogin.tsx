@@ -43,6 +43,7 @@ const useLogin = () => {
           disconnect();
         }
       }
+      refreshUser();
     },
     onError: (error) => {
       console.log(error, "--------error");
