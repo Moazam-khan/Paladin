@@ -19,10 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             theme: "dark",
             logo: logo,
           },
-
-          embeddedWallets: {
-            createOnLogin: "users-without-wallets",
-          },
         }}
       >
         <App />

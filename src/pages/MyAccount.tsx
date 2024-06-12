@@ -20,9 +20,13 @@ const MyAccount = (props: Props) => {
 
   const getNfts = async () => {
     try {
-      if (address) {
+      if (address || user?.wallet?.address) {
         setIsLoading(true);
-        const res = await getUserNfts(address, "sepolia", "test-14117");
+        const res = await getUserNfts(
+          user?.wallet?.address ? user.wallet.address : address ? address : "",
+          "sepolia",
+          "test-14117"
+        );
         console.log(res);
         setUserNfts(res.data);
       }
@@ -37,8 +41,7 @@ const MyAccount = (props: Props) => {
     getNfts();
   }, [address]);
 
-  // if (!address)
-  if (!address || !authenticated)
+  if (!authenticated)
     return (
       <div
         style={{

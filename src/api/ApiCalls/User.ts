@@ -28,10 +28,26 @@ export const GetUser = async (): Promise<any> => {
     const endPoint = "/api/user/current/";
     const res = await axios.get<any>(endPoint);
     if (!res?.data) throw "Something went wrong GetUser";
-    console.log("get user", res.data);
     return res.data;
   } catch (err) {
     console.log("error get user", err);
+    return Promise.reject(err);
+  }
+};
+
+export const updateUser = async (payload: FormData, user_id: number) => {
+  try {
+    const endPoint = `api/user/${user_id}/edit-user/`;
+
+    const res = await axios.patch<any>(endPoint, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (!res?.data) throw "Something went wrong";
+    return res.data;
+  } catch (err) {
+    console.log("error post updateUser", err);
     return Promise.reject(err);
   }
 };

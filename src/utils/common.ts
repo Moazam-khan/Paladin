@@ -17,3 +17,10 @@ export const clean = (obj: any) => {
   }
   return obj;
 };
+
+export function shortenAddress(address: string, length = 4) {
+  if (!address) return "";
+  const start = address.slice(0, length);
+  const end = address.slice(-length);
+  return `${start}...${end}`;
+}

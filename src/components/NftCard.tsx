@@ -69,7 +69,7 @@ const NftCard = ({
           }}
         >
           {/*  @ts-ignore */}
-          {format(updated_at, "dd/MM/yyyy hh:mm a")}
+          {/* {format(updated_at, "dd/MM/yyyy hh:mm a")} */}
         </Text>
         <Text
           style={{
