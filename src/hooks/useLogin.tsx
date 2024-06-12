@@ -1,3 +1,4 @@
+import { useUser } from "@/contexts/UserContext";
 import { handleTwitterLogin, handleWalletLogin } from "@/utils/auth";
 import {
   useLogout,
@@ -8,6 +9,8 @@ import { useDisconnect } from "wagmi";
 
 const useLogin = () => {
   const { ready, authenticated } = usePrivy();
+
+  const { refreshUser } = useUser();
   const { login } = usePrivyLogin({
     onComplete: async (
       user,
@@ -34,6 +37,7 @@ const useLogin = () => {
         }
 
         if (backendResponse) {
+          refreshUser();
         } else {
           logout();
           disconnect();
