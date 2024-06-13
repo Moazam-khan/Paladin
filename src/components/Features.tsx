@@ -1,7 +1,7 @@
 import liquidityArrows from '@/assets/arrow.svg';
 import bulb from '@/assets/bulb-square.png';
 import balanceChart from '@/assets/chart.svg';
-import {colors} from '@/utils';
+import {colors, fontFamily} from '@/utils';
 import {Col, Row} from 'antd';
 import Text from './Text';
 
@@ -47,7 +47,7 @@ const FeatureCard = ({
     <div style={{marginTop: 56}}>
       <Text
         style={{
-          fontFamily: 'SpaceGrotesk',
+          fontFamily: fontFamily.spaceGrotesk,
           fontSize: 28,
           textTransform: 'uppercase',
           fontWeight: 700,
@@ -60,7 +60,7 @@ const FeatureCard = ({
       </Text>
       <Text
         style={{
-          fontFamily: 'DarkerGrotesque',
+          fontFamily: fontFamily.darkerGrotesque,
           fontSize: 22,
           fontWeight: 600,
           display: 'block',
@@ -83,7 +83,7 @@ const Features = (props: Props) => {
       <Col span={24}>
         <Text
           style={{
-            fontFamily: 'SpaceGrotesk',
+            fontFamily: fontFamily.spaceGrotesk,
             fontSize: 28,
             textTransform: 'uppercase',
             fontWeight: 700,
@@ -94,7 +94,7 @@ const Features = (props: Props) => {
         </Text>
         <Text
           style={{
-            fontFamily: 'DarkerGrotesque',
+            fontFamily: fontFamily.darkerGrotesque,
             fontSize: 20,
             fontWeight: 600,
             display: 'block',

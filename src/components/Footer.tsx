@@ -3,16 +3,16 @@ import blend from '@/assets/social-blend.png';
 import discord from '@/assets/social-discord.png';
 import telegram from '@/assets/social-telegram.png';
 import twitter from '@/assets/social-twitter.png';
-import { colors } from '@/utils';
-import { Col, Flex, Row } from 'antd';
+import {useBreakpoint} from '@/hooks';
+import {colors, fontFamily} from '@/utils';
+import {Col, Flex, Row} from 'antd';
 import Text from './Text';
-import { useBreakpoint } from '@/hooks';
 
 type Props = {};
 
 const footerMenus = [
   {
-    title: { title: 'Products', link: '/products' },
+    title: {title: 'Products', link: '/products'},
     Items: [
       {
         title: 'NFTs',
@@ -29,7 +29,7 @@ const footerMenus = [
     ],
   },
   {
-    title: { title: 'Contact Us', link: '/contact-us' },
+    title: {title: 'Contact Us', link: '/contact-us'},
     Items: [
       {
         title: 'NFTs',
@@ -46,7 +46,7 @@ const footerMenus = [
     ],
   },
   {
-    title: { title: 'About Us', link: '/about-us' },
+    title: {title: 'About Us', link: '/about-us'},
     Items: [
       {
         title: 'NFTs',
@@ -65,17 +65,19 @@ const footerMenus = [
 ];
 
 const Footer = (props: Props) => {
-  const { sm, md } = useBreakpoint();
+  const {sm, md} = useBreakpoint();
   return (
-    <Row gutter={[28, 56]}
-         style={{
-           margin: '36px 24px',
-         }}>
+    <Row
+      gutter={[28, 56]}
+      style={{
+        margin: '36px 24px',
+      }}>
       <Col xs={24} md={8} lg={6}>
-        <img src={logo} style={{ height: 22 }} />
+        <img src={logo} style={{height: 22}} />
         <Text
           style={{
-            fontFamily: 'DarkerGrotesque',
+            fontFamily: fontFamily.darkerGrotesque,
+
             fontSize: 18,
             fontWeight: 700,
             display: 'block',
@@ -107,11 +109,12 @@ const Footer = (props: Props) => {
                 textAlign: sm ? 'left' : 'center',
               }}
               key={subMenu.title.title + index}
-              xs={24} sm={8}>
+              xs={24}
+              sm={8}>
               <div>
                 <Text
                   style={{
-                    fontFamily: 'DarkerGrotesque',
+                    fontFamily: fontFamily.darkerGrotesque,
                     fontSize: 18,
                     fontWeight: 800,
                     cursor: 'pointer',
@@ -122,7 +125,7 @@ const Footer = (props: Props) => {
                   <Text
                     key={item.title + subMenu.title.title + index}
                     style={{
-                      fontFamily: 'DarkerGrotesque',
+                      fontFamily: fontFamily.darkerGrotesque,
                       fontSize: 18,
                       fontWeight: 600,
                       display: 'block',
@@ -140,7 +143,7 @@ const Footer = (props: Props) => {
       <Col span={24}>
         <Text
           style={{
-            fontFamily: 'DarkerGrotesque',
+            fontFamily: fontFamily.darkerGrotesque,
             fontWeight: 600,
             display: 'block',
             color: colors.white50,

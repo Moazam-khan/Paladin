@@ -1,4 +1,4 @@
-import { ThemeConfig } from 'antd';
+import {ThemeConfig} from 'antd';
 
 export const colors = {
   primary: '#FFCB3A',
@@ -43,4 +43,10 @@ export const theme: ThemeConfig = {
     fontFamily: 'Nippo',
     colorText: colors.white,
   },
+};
+
+export const fontFamily = {
+  nippo: 'Nippo',
+  darkerGrotesque: 'DarkerGrotesque',
+  spaceGrotesk: 'SpaceGrotesk',
 };

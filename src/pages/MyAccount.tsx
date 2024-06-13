@@ -1,31 +1,32 @@
-import { getUserNfts } from "@/api/ApiCalls/nfts";
-import { MyAccountHeader, Text } from "@/components";
-import Button from "@/components/Button";
-import NftCard from "@/components/NftCard";
-import { useBreakpoint, useLogin } from "@/hooks";
-import { commonStyles } from "@/styles";
-import { usePrivy } from "@privy-io/react-auth";
-import { Col, Row, Spin } from "antd";
-import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import {getUserNfts} from '@/api/ApiCalls/nfts';
+import {MyAccountHeader, Text} from '@/components';
+import Button from '@/components/Button';
+import NftCard from '@/components/NftCard';
+import {useBreakpoint, useLogin} from '@/hooks';
+import {commonStyles} from '@/styles';
+import {fontFamily} from '@/utils';
+import {usePrivy} from '@privy-io/react-auth';
+import {Col, Row, Spin} from 'antd';
+import {useEffect, useState} from 'react';
+import {useAccount} from 'wagmi';
 type Props = {};
 
 const MyAccount = (props: Props) => {
-  const { address } = useAccount();
-  const { sm, md, lg } = useBreakpoint();
+  const {address} = useAccount();
+  const {sm, md, lg} = useBreakpoint();
   const [userNfts, setUserNfts] = useState<Array<NFT>>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { handleLogin } = useLogin();
-  const { ready, authenticated, linkWallet, user } = usePrivy();
+  const {handleLogin} = useLogin();
+  const {ready, authenticated, linkWallet, user} = usePrivy();
 
   const getNfts = async () => {
     try {
       if (address || user?.wallet?.address) {
         setIsLoading(true);
         const res = await getUserNfts(
-          user?.wallet?.address ? user.wallet.address : address ? address : "",
-          "sepolia",
-          "test-14117"
+          user?.wallet?.address ? user.wallet.address : address ? address : '',
+          'sepolia',
+          'test-14117',
         );
         console.log(res);
         setUserNfts(res.data);
@@ -45,18 +46,16 @@ const MyAccount = (props: Props) => {
     return (
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           height: 400,
-        }}
-      >
+        }}>
         <Button
           className="text-tail-end"
           disabled={!ready}
           onClick={!address && authenticated ? linkWallet : handleLogin}
-          loading={!ready}
-        >
+          loading={!ready}>
           Click to connect your wallet
         </Button>
       </div>
@@ -65,9 +64,8 @@ const MyAccount = (props: Props) => {
   return (
     <Row
       style={{
-        margin: md ? 24 : "24px 12px 24px 12px",
-      }}
-    >
+        margin: md ? 24 : '24px 12px 24px 12px',
+      }}>
       <Col span={24}>
         <MyAccountHeader />
       </Col>
@@ -76,30 +74,27 @@ const MyAccount = (props: Props) => {
         style={{
           ...commonStyles.card,
           marginTop: 24,
-        }}
-      >
+        }}>
         <Col span={24}>
           <Text
             style={{
-              fontFamily: "SpaceGrotesk",
+              fontFamily: fontFamily.spaceGrotesk,
               fontSize: 28,
               fontWeight: 700,
-              textTransform: "uppercase",
-            }}
-          >
+              textTransform: 'uppercase',
+            }}>
             My NFTs
           </Text>
         </Col>
-        <Col span={24} style={{ marginTop: 24 }}>
+        <Col span={24} style={{marginTop: 24}}>
           {isLoading ? (
             <div
               style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 height: 400,
-              }}
-            >
+              }}>
               <Spin />
             </div>
           ) : (
