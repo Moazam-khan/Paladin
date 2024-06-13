@@ -25,7 +25,7 @@ const MyAccount = (props: Props) => {
         const res = await getUserNfts(
           user?.wallet?.address ? user.wallet.address : address ? address : "",
           "sepolia",
-          "test-14117"
+          "paladins-erc404-1"
         );
         console.log(res);
         setUserNfts(res.data);
