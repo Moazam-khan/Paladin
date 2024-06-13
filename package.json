@@ -16,6 +16,7 @@
     "@web3modal/wagmi": "^4.2.3",
     "antd": "^5.17.4",
     "axios": "^1.7.2",
+    "bignumber.js": "^9.1.2",
     "date-fns": "^3.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,6 +24,7 @@
     "simple-zustand-devtools": "^1.1.0",
     "viem": "^2.13.3",
     "wagmi": "^2.9.8",
+    "web3": "^4.9.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
