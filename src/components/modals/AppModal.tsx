@@ -9,10 +9,16 @@ const AppModal = ({style, styles, ...props}: Props) => {
   return (
     <Modal
       centered
+      title={null}
       footer={null}
       closeIcon={null}
       styles={{
-        body: styles?.body,
+        body: {
+          display: 'flex',
+          flex: 1,
+          flexDirection: 'column',
+          ...styles?.body,
+        },
         content: {
           border: `0.85px solid ${colors.btnPrimaryBorder}`,
           borderRadius: 24,

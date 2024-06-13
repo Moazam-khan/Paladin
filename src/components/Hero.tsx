@@ -2,6 +2,7 @@ import bgHero from '@/assets/bg-hero.png';
 import heroSide from '@/assets/hero-sider.png';
 import infoCircle from '@/assets/info-circle.png';
 import {useBreakpoint} from '@/hooks';
+import {useSelector} from '@/store';
 import {colors, fontFamily} from '@/utils';
 import {Col, Row} from 'antd';
 import Button from './Button';
@@ -11,6 +12,7 @@ type Props = {};
 
 const Hero = (props: Props) => {
   const {sm, md, lg, xl} = useBreakpoint();
+  const setBuyNftModal = useSelector().setBuyNftModal;
 
   return (
     <Row
@@ -67,7 +69,16 @@ const Hero = (props: Props) => {
             </Button>
           </Col>
           <Col span={sm ? 12 : 24} style={{display: 'grid'}}>
-            <Button size={'large'} block>
+            <Button
+              size={'large'}
+              block
+              onClick={() => {
+                setBuyNftModal({
+                  isOpen: true,
+                  address: '0x123',
+                  amount: 2,
+                });
+              }}>
               Mint your ERC404
             </Button>
             <Row justify={'end'} align={'middle'} gutter={4}>

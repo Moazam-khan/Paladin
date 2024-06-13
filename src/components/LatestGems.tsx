@@ -47,6 +47,7 @@ const LatestGems = (props: Props) => {
   useEffect(() => {
     const loadData = async () => {
       const data = await getNFTs();
+      console.log('latest gems', data);
       setNFTs(data.data);
     };
     loadData();
@@ -83,7 +84,7 @@ const LatestGems = (props: Props) => {
           <Col xs={24} sm={16} md={20}>
             <Row gutter={[24, 24]}>
               {nfts.map((gem: any, index) => (
-                <Col xs={24} md={8} lg={6}>
+                <Col xs={24} md={8} lg={6} key={gem?.identifier}>
                   <NftCard
                     key={index}
                     style={

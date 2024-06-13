@@ -1,20 +1,32 @@
 import type {StateCreator} from 'zustand';
 
 type State = {
-  isShowMinNftModal: boolean;
+  buyNftModalData: {
+    isOpen?: boolean;
+    address?: string;
+    amount?: number;
+  };
 };
 
 type Actions = {
-  setShowMintNftModal: (e: boolean) => void;
+  setBuyNftModal: (e: State['buyNftModalData']) => void;
 };
 
 export interface ModalsSlice extends State, Actions {}
 
 const initialState: State = {
-  isShowMinNftModal: false,
+  buyNftModalData: {
+    isOpen: false,
+  },
 };
 
-export const createModalsSlice: StateCreator<ModalsSlice> = (set) => ({
+export const createModalsSlice: StateCreator<ModalsSlice> = (set, get) => ({
   ...initialState,
-  setShowMintNftModal: (e) => set({isShowMinNftModal: e}),
+  setBuyNftModal: (e) =>
+    set({
+      buyNftModalData: {
+        ...get().buyNftModalData,
+        ...e,
+      },
+    }),
 });

@@ -1,3 +1,4 @@
+import {useSelector} from '@/store';
 import {colors, fontFamily} from '@/utils';
 import Button from './Button';
 import Text from './Text';
@@ -18,6 +19,7 @@ const NftCard = ({
   style,
   ...rest
 }: Props) => {
+  const setBuyNftModal = useSelector().setBuyNftModal;
   return (
     <div
       style={{
@@ -102,7 +104,16 @@ const NftCard = ({
             margin: '0 24px',
             paddingBottom: 16,
           }}>
-          <Button secondary style={{width: '100%'}}>
+          <Button
+            onClick={() => {
+              setBuyNftModal({
+                isOpen: true,
+                address: identifier,
+                amount: 2,
+              });
+            }}
+            secondary
+            style={{width: '100%'}}>
             BUY NFT
           </Button>
         </div>
