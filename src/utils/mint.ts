@@ -1,11 +1,10 @@
+import {MINT_CONTRACT_ADDRESS} from '@/constants';
 import Web3 from 'web3';
 
 export const extractTokenIdsFromReceipt = (receipt: any) => {
   const tokenIds = [];
-  console.log(receipt, '-receipt');
 
   for (const log of receipt.logs) {
-    console.log(log);
     if (
       log.topics[0] === Web3.utils.sha3('Transfer(address,address,uint256)') &&
       log.topics.length === 4
@@ -24,13 +23,10 @@ export const convertDataUrlToJson = (dataUrl: any) => {
 };
 
 export function convertNftData(nftData: any) {
-  // Extract data from the input
   const {name, description, external_url, image, attributes} = nftData;
 
-  // Get the identifier from the name
   const identifier = name.match(/#(\d+)/)[1];
 
-  // Construct metadata URL
   const metadata = {
     name: name,
     description: description,
@@ -40,11 +36,10 @@ export function convertNftData(nftData: any) {
   };
   const metadataUrl = `data:application/json;utf8,${JSON.stringify(metadata)}`;
 
-  // Construct the final object
   const convertedData = {
     identifier: identifier,
-    collection: 'test-14117',
-    contract: '0x8f23881865847b28b5dcda915ce4d6d44fc51769',
+    collection: 'paladins-erc404-1',
+    contract: MINT_CONTRACT_ADDRESS,
     token_standard: 'erc721',
     name: name,
     description: description,
