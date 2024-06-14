@@ -11,6 +11,7 @@ import {MinusOutlined, PlusOutlined} from '@ant-design/icons';
 import {Col, Row, Spin, message} from 'antd';
 import BigNumber from 'bignumber.js';
 import {Fragment, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import {useAccount} from 'wagmi';
 import Web3 from 'web3';
 import mintAbi from '../../abis/mintAbi.json';
@@ -144,132 +145,7 @@ const temp_data = {
   },
 };
 
-const temp2_data = {
-  blockHash:
-    '0x08751c8cfafc47bff365b313cf1a850d4b89438c6c68d7e4200eabfcfdf5e91e',
-  blockNumber: '6098661',
-  cumulativeGasUsed: '584765',
-  effectiveGasPrice: '179574164670',
-  from: '0x7868933a36fb7771f5d87c65857f63c9264d28a4',
-  gasUsed: '128629',
-  logs: [
-    {
-      address: '0x9bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-      blockHash:
-        '0x08751c8cfafc47bff365b313cf1a850d4b89438c6c68d7e4200eabfcfdf5e91e',
-      blockNumber: '6098661',
-      data: '0x0000000000000000000000000000000000000000000000000000000000000001',
-      logIndex: '13',
-      removed: false,
-      topics: [
-        '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-      ],
-      transactionHash:
-        '0x2fcb140183480e144a20703147e02fbf699d7af111302a88491eb79f2c71d926',
-      transactionIndex: '6',
-    },
-    {
-      address: '0xac635e8fae88e9042e1dd46b6c757b1bc94aaba7',
-      blockHash:
-        '0x08751c8cfafc47bff365b313cf1a850d4b89438c6c68d7e4200eabfcfdf5e91e',
-      blockNumber: '6098661',
-      data: '0x0000000000000000000000000000000000000000000000000de0b6b3a7640000',
-      logIndex: '14',
-      removed: false,
-      topics: [
-        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-        '0x0000000000000000000000009bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-      ],
-      transactionHash:
-        '0x2fcb140183480e144a20703147e02fbf699d7af111302a88491eb79f2c71d926',
-      transactionIndex: '6',
-    },
-    {
-      address: '0xac635e8fae88e9042e1dd46b6c757b1bc94aaba7',
-      blockHash:
-        '0x08751c8cfafc47bff365b313cf1a850d4b89438c6c68d7e4200eabfcfdf5e91e',
-      blockNumber: '6098661',
-      data: '0x',
-      logIndex: '15',
-      removed: false,
-      topics: [
-        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-        '0x0000000000000000000000000000000000000000000000000000000000000000',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-        '0x800000000000000000000000000000000000000000000000000000000000000e',
-      ],
-      transactionHash:
-        '0x2fcb140183480e144a20703147e02fbf699d7af111302a88491eb79f2c71d926',
-      transactionIndex: '6',
-    },
-  ],
-  logsBloom:
-    '0x00000000800000100000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000008000400000000000000000000000000000008000000000000020000000000000000000800000000000000000000000050000000000000000000000000010000042000000000000000004000000000001000000000000000000000100000000020000000000000000000000000000000000000000080000002000000000000200000000000000000000000000000040000000020000000000020000000000000000000000000000000000000000000000000000000',
-  status: '1',
-  to: '0x9bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-  transactionHash:
-    '0x2fcb140183480e144a20703147e02fbf699d7af111302a88491eb79f2c71d926',
-  transactionIndex: '6',
-  type: '2',
-  events: {
-    NFTPurchased: {
-      address: '0x9bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-      blockHash:
-        '0x08751c8cfafc47bff365b313cf1a850d4b89438c6c68d7e4200eabfcfdf5e91e',
-      blockNumber: '6098661',
-      data: '0x0000000000000000000000000000000000000000000000000000000000000001',
-      logIndex: '13',
-      removed: false,
-      topics: [
-        '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-      ],
-      transactionHash:
-        '0x2fcb140183480e144a20703147e02fbf699d7af111302a88491eb79f2c71d926',
-      transactionIndex: '6',
-      returnValues: {
-        '0': '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
-        '1': '1',
-        __length__: 2,
-        buyer: '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
-        amount: '1',
-      },
-      event: 'NFTPurchased',
-      signature:
-        '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-      raw: {
-        data: '0x0000000000000000000000000000000000000000000000000000000000000001',
-        topics: [
-          '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-          '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-        ],
-      },
-    },
-  },
-};
-
 type Props = {};
-
-const dummyNft = {
-  identifier:
-    '57896044618658097711785492504343953926634992332820282019728792003956564819972',
-  collection: 'test-14117',
-  contract: '0x8f23881865847b28b5dcda915ce4d6d44fc51769',
-  token_standard: 'erc721',
-  name: 'test #57896044618658097711785492504343953926634992332820282019728792003956564819972',
-  description: '',
-  image_url:
-    'https://ipfs.io/ipfs/QmchCoVt9xNsHJ33ywHwZuNUWfmdvjbK61F2uNAMMSrTN8',
-  metadata_url:
-    'data:application/json;utf8,{"name":"test #57896044618658097711785492504343953926634992332820282019728792003956564819972","description":"","external_url":"https://net2dev.io","image":"ipfs://QmchCoVt9xNsHJ33ywHwZuNUWfmdvjbK61F2uNAMMSrTN8","attributes":[{"trait_type":"Color","value":"Mr Bean 1"}]}',
-  opensea_url:
-    'https://testnets.opensea.io/assets/sepolia/0x8f23881865847b28b5dcda915ce4d6d44fc51769/57896044618658097711785492504343953926634992332820282019728792003956564819972',
-  updated_at: '2024-05-22T17:57:30.064745',
-  is_disabled: false,
-  is_nsfw: false,
-};
 
 const MintNftModal = (props: Props) => {
   const [amount, setAmount] = useState<number>(0);
@@ -298,7 +174,7 @@ const MintNftModal = (props: Props) => {
       setLoading(false);
     };
     loadData();
-  }, []);
+  }, [connector]);
 
   const closeModal = () => {
     setBuyNftModal({isOpen: false});
@@ -499,7 +375,11 @@ const MintNftModal = (props: Props) => {
           </Button>
         </Col>
         <Col span={12}>
-          <Button onClick={handleMintNft} block size="large">
+          <Button
+            onClick={handleMintNft}
+            block
+            size="large"
+            disabled={loading || amount < 1}>
             Mint
           </Button>
         </Col>
@@ -569,7 +449,11 @@ const MintNftModal = (props: Props) => {
         </Col>
         <Col span={12}>
           <Button onClick={closeModal} block size="large">
-            VIEW YOUR NFTS
+            <Link
+              to="/myaccount"
+              style={{color: 'inherit', textDecoration: 'inherit'}}>
+              VIEW YOUR NFTS
+            </Link>
           </Button>
         </Col>
       </Row>
