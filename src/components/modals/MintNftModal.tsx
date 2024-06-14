@@ -21,130 +21,6 @@ import NftCard from '../NftCard';
 import Text from '../Text';
 import AppModal from './AppModal';
 
-const temp_data = {
-  blockHash:
-    '0xc20494d14f7e4ab7037b94fc4ace38df5850033c2abdac19f76c7578a47a1c22',
-  blockNumber: '6098802',
-  cumulativeGasUsed: '4558631',
-  effectiveGasPrice: '42082339165',
-  from: '0x7868933a36fb7771f5d87c65857f63c9264d28a4',
-  gasUsed: '160548',
-  logs: [
-    {
-      address: '0x9bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-      blockHash:
-        '0xc20494d14f7e4ab7037b94fc4ace38df5850033c2abdac19f76c7578a47a1c22',
-      blockNumber: '6098802',
-      data: '0x0000000000000000000000000000000000000000000000000000000000000002',
-      logIndex: '213',
-      removed: false,
-      topics: [
-        '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-      ],
-      transactionHash:
-        '0xc922bf549b729d6f047bd7ea6b24599cd9e8664673c5d7b6b78fd5c23465740b',
-      transactionIndex: '12',
-    },
-    {
-      address: '0xac635e8fae88e9042e1dd46b6c757b1bc94aaba7',
-      blockHash:
-        '0xc20494d14f7e4ab7037b94fc4ace38df5850033c2abdac19f76c7578a47a1c22',
-      blockNumber: '6098802',
-      data: '0x0000000000000000000000000000000000000000000000001bc16d674ec80000',
-      logIndex: '214',
-      removed: false,
-      topics: [
-        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-        '0x0000000000000000000000009bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-      ],
-      transactionHash:
-        '0xc922bf549b729d6f047bd7ea6b24599cd9e8664673c5d7b6b78fd5c23465740b',
-      transactionIndex: '12',
-    },
-    {
-      address: '0xac635e8fae88e9042e1dd46b6c757b1bc94aaba7',
-      blockHash:
-        '0xc20494d14f7e4ab7037b94fc4ace38df5850033c2abdac19f76c7578a47a1c22',
-      blockNumber: '6098802',
-      data: '0x',
-      logIndex: '215',
-      removed: false,
-      topics: [
-        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-        '0x0000000000000000000000000000000000000000000000000000000000000000',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-        '0x8000000000000000000000000000000000000000000000000000000000000011',
-      ],
-      transactionHash:
-        '0xc922bf549b729d6f047bd7ea6b24599cd9e8664673c5d7b6b78fd5c23465740b',
-      transactionIndex: '12',
-    },
-    {
-      address: '0xac635e8fae88e9042e1dd46b6c757b1bc94aaba7',
-      blockHash:
-        '0xc20494d14f7e4ab7037b94fc4ace38df5850033c2abdac19f76c7578a47a1c22',
-      blockNumber: '6098802',
-      data: '0x',
-      logIndex: '216',
-      removed: false,
-      topics: [
-        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
-        '0x0000000000000000000000000000000000000000000000000000000000000000',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-        '0x8000000000000000000000000000000000000000000000000000000000000012',
-      ],
-      transactionHash:
-        '0xc922bf549b729d6f047bd7ea6b24599cd9e8664673c5d7b6b78fd5c23465740b',
-      transactionIndex: '12',
-    },
-  ],
-  logsBloom:
-    '0x00010000c00000100000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000008000008000400000000000000000000000000000008000000000000020000000000000000000800000000000000000000000050000000000000000000000000210000002000000000000000000000000000001000000000000000800000100000000020000000000000400000000000000000000000000000000002000000000000200000000000000000000000000000040000000020000000000020000000000000000000000000000000000000000000000000000000',
-  status: '1',
-  to: '0x9bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-  transactionHash:
-    '0xc922bf549b729d6f047bd7ea6b24599cd9e8664673c5d7b6b78fd5c23465740b',
-  transactionIndex: '12',
-  type: '2',
-  events: {
-    NFTPurchased: {
-      address: '0x9bdb5d66d7fd059504aa9d9cccbed87c50ed7b5c',
-      blockHash:
-        '0xc20494d14f7e4ab7037b94fc4ace38df5850033c2abdac19f76c7578a47a1c22',
-      blockNumber: '6098802',
-      data: '0x0000000000000000000000000000000000000000000000000000000000000002',
-      logIndex: '213',
-      removed: false,
-      topics: [
-        '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-        '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-      ],
-      transactionHash:
-        '0xc922bf549b729d6f047bd7ea6b24599cd9e8664673c5d7b6b78fd5c23465740b',
-      transactionIndex: '12',
-      returnValues: {
-        '0': '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
-        '1': '2',
-        __length__: 2,
-        buyer: '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
-        amount: '2',
-      },
-      event: 'NFTPurchased',
-      signature:
-        '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-      raw: {
-        data: '0x0000000000000000000000000000000000000000000000000000000000000002',
-        topics: [
-          '0xe38cbc8a9e3260a040319ef457cdd3ffa680a53703ce325be58a81bfbbc63b79',
-          '0x0000000000000000000000007868933a36fb7771f5d87c65857f63c9264d28a4',
-        ],
-      },
-    },
-  },
-};
-
 type Props = {};
 
 const MintNftModal = (props: Props) => {
@@ -216,23 +92,23 @@ const MintNftModal = (props: Props) => {
 
     setLoading(true);
     try {
-      // const web3 = new Web3((await connector?.getProvider()) || '');
-      // const contract = new web3.eth.Contract(mintAbi, MINT_CONTRACT_ADDRESS);
+      const web3 = new Web3((await connector?.getProvider()) || '');
+      const contract = new web3.eth.Contract(mintAbi, MINT_CONTRACT_ADDRESS);
 
-      // const price: string = await contract.methods.price().call();
+      const price: string = await contract.methods.price().call();
 
-      // const gas: bigint = await contract.methods.buy(amount).estimateGas({
-      //   from: address,
-      //   value: BigNumber(price).multipliedBy(BigNumber(amount)).toString(),
-      // });
+      const gas: bigint = await contract.methods.buy(amount).estimateGas({
+        from: address,
+        value: BigNumber(price).multipliedBy(BigNumber(amount)).toString(),
+      });
 
-      // const tx = await contract.methods.buy(amount).send({
-      //   from: address,
-      //   value: BigNumber(price).multipliedBy(BigNumber(amount)).toString(),
-      //   gas: String(gas),
-      // });
+      const tx = await contract.methods.buy(amount).send({
+        from: address,
+        value: BigNumber(price).multipliedBy(BigNumber(amount)).toString(),
+        gas: String(gas),
+      });
 
-      const tokenIds = extractTokenIdsFromReceipt(temp_data);
+      const tokenIds = extractTokenIdsFromReceipt(tx);
 
       await fetchNftMetadata(tokenIds);
 
