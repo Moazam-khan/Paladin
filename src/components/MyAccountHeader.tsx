@@ -26,7 +26,8 @@ const MyAccountHeader = (props: Props) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const {xs, sm, md, lg, xl, xxl} = useBreakpoint();
-  const {user, linkWallet, ready, unlinkWallet} = usePrivy();
+  const {user, linkWallet, ready, unlinkWallet, linkTwitter, unlinkTwitter} =
+    usePrivy();
   const {handleLogout} = useLogin();
   const {user: backendUser, loading: userLoading, refreshUser} = useUser();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -47,6 +48,12 @@ const MyAccountHeader = (props: Props) => {
   const handleLinkWallet = () => {
     setLoading(true);
     linkWallet();
+    setLoading(false);
+  };
+
+  const handleLinkTwitter = () => {
+    setLoading(true);
+    linkTwitter();
     setLoading(false);
   };
 
@@ -253,25 +260,63 @@ const MyAccountHeader = (props: Props) => {
               </Button>
             </div>
           ) : (
-            <Text
-              style={{
-                fontFamily: fontFamily.spaceGrotesk,
-                fontSize: sm ? 24 : 18,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-              }}>
-              @{backendUser?.username}
-              <img
+            <div>
+              <Text
                 style={{
-                  width: sm ? 17 : 17,
-                  height: sm ? 17 : 17,
-                  cursor: 'pointer',
-                  marginLeft: '10px',
-                }}
-                src={editIcon}
-                onClick={() => setEditingUsername(true)}
-              />
-            </Text>
+                  fontFamily: fontFamily.spaceGrotesk,
+                  fontSize: sm ? 24 : 18,
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                }}>
+                @{backendUser?.username}
+                <img
+                  style={{
+                    width: sm ? 17 : 17,
+                    height: sm ? 17 : 17,
+                    cursor: 'pointer',
+                    marginLeft: '10px',
+                  }}
+                  src={editIcon}
+                  onClick={() => setEditingUsername(true)}
+                />
+              </Text>
+            </div>
+          )}
+
+          {user?.twitter && (
+            <div style={{display: 'flex', gap: '10px'}}>
+              {user?.twitter && (
+                <Text
+                  style={{
+                    fontFamily: fontFamily.darkerGrotesque,
+                    fontSize: sm ? 20 : 16,
+                    fontWeight: 500,
+                    color: colors.white50,
+                    lineHeight: '100%',
+                  }}>
+                  Connected with twitter
+                </Text>
+              )}
+              {user?.twitter && user?.wallet && (
+                <Text
+                  onClick={() => {
+                    setLoading(true);
+                    if (user?.twitter?.subject)
+                      unlinkTwitter(user.twitter.subject);
+                    setLoading(false);
+                  }}
+                  style={{
+                    fontFamily: fontFamily.darkerGrotesque,
+                    fontSize: sm ? 20 : 16,
+                    fontWeight: 500,
+                    color: colors.secondary,
+                    lineHeight: '100%',
+                    cursor: 'pointer',
+                  }}>
+                  Unlink
+                </Text>
+              )}
+            </div>
           )}
 
           {!user?.wallet && (
@@ -284,6 +329,7 @@ const MyAccountHeader = (props: Props) => {
               Link Wallet
             </Button>
           )}
+
           {user?.wallet && (
             <Flex align="center" gap={10}>
               <Text
@@ -324,26 +370,22 @@ const MyAccountHeader = (props: Props) => {
                     unlinkWallet(user?.wallet?.address || '');
                     setLoading(false);
                   }}>
-                  Disconnect
+                  Unlink
                 </Text>
               )}
             </Flex>
           )}
-          <Button
-            secondary
-            style={{
-              alignSelf: 'flex-start',
-              width: 187,
-            }}
-            disabled={loading}
-            loading={loading}
-            onClick={() => {
-              setLoading(true);
-              handleLogout();
-              setLoading(false);
-            }}>
-            Logout
-          </Button>
+
+          {!user?.twitter && user?.wallet && (
+            <Button
+              className="text-tail-end"
+              style={{width: 187}}
+              disabled={!ready}
+              onClick={handleLinkTwitter}
+              loading={!ready || loading}>
+              Link Twitter
+            </Button>
+          )}
         </Flex>
       </Flex>
     </Col>
