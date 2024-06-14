@@ -8,7 +8,7 @@ import {
   fontFamily,
 } from '@/utils';
 import {MinusOutlined, PlusOutlined} from '@ant-design/icons';
-import {Col, Row, Spin, message} from 'antd';
+import {Carousel, Col, Flex, Row, Spin, message} from 'antd';
 import BigNumber from 'bignumber.js';
 import {Fragment, useEffect, useState} from 'react';
 import {useAccount} from 'wagmi';
@@ -279,6 +279,7 @@ const MintNftModal = (props: Props) => {
   const [modalStage, setModalStage] = useState<'mint' | 'minting' | 'minted'>(
     'mint',
   );
+  const [activeSlide, setActiveSlide] = useState(0);
   const [purchasedNFTs, setPurchasedNFTs] = useState<any>([]);
 
   const [nftPrice, setNFTPrice] = useState<BigNumber>(
@@ -553,26 +554,44 @@ const MintNftModal = (props: Props) => {
         }}>
         ALL DONE!
       </Text>
-      {nfts.map((nft: any) => (
-        <NftCard
-          style={{width: 280, alignSelf: 'center', margin: '24px 0px'}}
-          {...nft}
-          owned
-        />
-      ))}
+      <Carousel
+        draggable={true}
+        dots={true}
+        rootClassName="carousel-nft-mint"
+        afterChange={(e) => {
+          setActiveSlide(e);
+        }}>
+        {nfts.map((nft: any) => (
+          <div>
+            <NftCard
+              style={{
+                maxWidth: 280,
+                marginBottom: 36,
+                marginTop: 24,
+                marginLeft: 6,
+                marginRight: 6,
+              }}
+              {...nft}
+              owned
+            />
+          </div>
+        ))}
+      </Carousel>
 
-      <Row gutter={12}>
-        <Col span={12}>
-          <Button onClick={closeModal} block secondary size="large">
-            Cancel
-          </Button>
-        </Col>
-        <Col span={12}>
-          <Button onClick={closeModal} block size="large">
-            VIEW YOUR NFTS
-          </Button>
-        </Col>
-      </Row>
+      <Flex gap={10} style={{justifyContent: 'center'}}>
+        <Button
+          style={{maxWidth: 172}}
+          onClick={closeModal}
+          block
+          secondary
+          size="large">
+          Cancel
+        </Button>
+
+        <Button style={{maxWidth: 172}} onClick={closeModal} block size="large">
+          VIEW YOUR NFTS
+        </Button>
+      </Flex>
     </Fragment>
   );
 
@@ -591,7 +610,7 @@ const MintNftModal = (props: Props) => {
 
   if (nftData.isOpen)
     return (
-      <AppModal open={nftData.isOpen} onCancel={closeModal}>
+      <AppModal width={440} open={nftData.isOpen} onCancel={closeModal}>
         {renderStage()}
       </AppModal>
     );

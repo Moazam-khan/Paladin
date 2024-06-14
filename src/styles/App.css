@@ -48,3 +48,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.carousel-nft-mint {
+  max-width: 285px;
+  align-self: center;
+  margin-bottom: 18px;
+}
