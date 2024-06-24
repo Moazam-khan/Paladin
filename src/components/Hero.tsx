@@ -19,7 +19,7 @@ const Hero = (props: Props) => {
       gutter={[24, 24]}
       style={{
         backgroundImage: `url(${bgHero})`,
-        margin: 24,
+        margin: '24px 0',
         padding: 24,
         borderRadius: 15,
       }}>

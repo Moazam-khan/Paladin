@@ -55,7 +55,7 @@ const LatestGems = (props: Props) => {
   return (
     <Row
       style={{
-        margin: 24,
+        margin: '24px 0',
       }}>
       <Col span={24}>
         <Text

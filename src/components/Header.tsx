@@ -63,6 +63,8 @@ const menuFromPath = (path: string) => {
       return 'Mint';
     case '/staking':
       return 'Staking';
+    case '/presale':
+      return 'Presale';
     case '/myaccount':
       return 'Account';
     default:
@@ -97,7 +99,7 @@ const Header = (props: Props) => {
   return (
     <div
       style={{
-        margin: md ? '0 24px' : '0 12px',
+        padding: md ? 0 : '0 12px',
         borderBottom: `1px solid ${colors.white20}`,
       }}>
       <Flex
@@ -110,7 +112,6 @@ const Header = (props: Props) => {
         <Flex gap={46} style={{display: md ? 'flex' : 'none'}}>
           <MenuItem
             onClick={() => {
-              // setActiveMenu('Home');
               navigate('/');
             }}
             active={activeMenu === 'Home'}>
@@ -118,25 +119,23 @@ const Header = (props: Props) => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              // setActiveMenu('Mint');
               navigate('/mint');
             }}
             active={activeMenu === 'Mint'}>
             Mint
           </MenuItem>
           <MenuItem
-            onClick={() =>
-              // setActiveMenu('Staking')
-              navigate('/staking')
-            }
+            onClick={() => navigate('/staking')}
             active={activeMenu === 'Staking'}>
             Staking
           </MenuItem>
           <MenuItem
-            onClick={() =>
-              // setActiveMenu('Account')
-              navigate('/myaccount')
-            }
+            onClick={() => navigate('/presale')}
+            active={activeMenu === 'Presale'}>
+            Presale
+          </MenuItem>
+          <MenuItem
+            onClick={() => navigate('/myaccount')}
             active={activeMenu === 'Account'}>
             Account
           </MenuItem>
