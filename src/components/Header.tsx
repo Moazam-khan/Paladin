@@ -63,6 +63,8 @@ const menuFromPath = (path: string) => {
       return 'Mint';
     case '/staking':
       return 'Staking';
+    case '/presale':
+      return 'Presale';
     case '/myaccount':
       return 'Account';
     default:
@@ -131,6 +133,14 @@ const Header = (props: Props) => {
             }
             active={activeMenu === 'Staking'}>
             Staking
+          </MenuItem>
+          <MenuItem
+            onClick={() =>
+              // setActiveMenu('Staking')
+              navigate('/presale')
+            }
+            active={activeMenu === 'Presale'}>
+            Presale
           </MenuItem>
           <MenuItem
             onClick={() =>

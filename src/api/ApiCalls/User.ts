@@ -51,3 +51,47 @@ export const updateUser = async (payload: FormData, user_id: number) => {
     return Promise.reject(err);
   }
 };
+
+export const getMaxUserDeposit = async (userAddress: string) => {
+  try {
+    const endpoint = `/api/user/max-user-deposit/${userAddress}/`;
+    const response = await axios.get(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error('Max user deposit check failed:', error);
+    return { error: 'Max user deposit check failed' };
+  }
+};
+
+export const getPresaleTotalDeposit = async () => {
+  try {
+    const endpoint = '/api/user/total-presale-deposit/';
+    const response = await axios.get(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error('Total presale deposit check failed:', error);
+    return { error: 'Total presale deposit check failed' };
+  }
+};
+
+export const getMinDepositCheck = async (amount: number) => {
+  try {
+    const endpoint = '/api/user/min-deposit-check/';
+    const response = await axios.post(endpoint, { amount });
+    return response.data;
+  } catch (error) {
+    console.error('Min deposit check failed:', error);
+    return { error: 'Min deposit check failed' };
+  }
+};
+
+export const postTransaction = async (transactionData: any) => {
+  try {
+    const endpoint = '/api/user/transactions/';
+    const response = await axios.post(endpoint, transactionData);
+    return response.data;
+  } catch (error) {
+    console.error('Transaction posting failed:', error);
+    throw new Error('Transaction posting failed');
+  }
+};
