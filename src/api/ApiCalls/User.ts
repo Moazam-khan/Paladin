@@ -133,3 +133,25 @@ export const postTransaction = async (transactionData: any) => {
     throw new Error('Transaction posting failed');
   }
 };
+
+export const getPresales = async (): Promise<any[]> => {
+  try {
+    const endpoint = '/api/user/presales/';
+    const response = await axios.get<any[]>(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch presales:', error);
+    throw new Error('Failed to fetch presales');
+  }
+};
+
+export const getPresaleById = async (presaleId: number): Promise<any> => {
+  try {
+    const endpoint = `/api/user/presales/${presaleId}/`;
+    const response = await axios.get<any>(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error(`Failed to fetch presale with ID ${presaleId}:`, error);
+    throw new Error(`Failed to fetch presale with ID ${presaleId}`);
+  }
+};

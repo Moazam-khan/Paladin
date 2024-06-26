@@ -7,9 +7,10 @@ import PreSaleProgressBar from './PreSaleProgressBar';
 
 type PreSaleInfoProps = {
   totalEthDeposited: number;
+  targetAmount: number;
 };
 
-const PreSaleInfo = ({ totalEthDeposited }: PreSaleInfoProps) => {
+const PreSaleInfo = ({ totalEthDeposited, targetAmount }: PreSaleInfoProps) => {
   const { md } = useBreakpoint();
   return (
     <Flex
@@ -73,7 +74,7 @@ const PreSaleInfo = ({ totalEthDeposited }: PreSaleInfoProps) => {
         </Flex>
       </div>
       <div style={{marginTop: 'auto', paddingTop: 24}}>
-        <PreSaleProgressBar progress={50} />
+        <PreSaleProgressBar progress={(totalEthDeposited / targetAmount) * 100} totalEthDeposited={totalEthDeposited} totalTargetAmount={targetAmount} overflowAmount={0}/>
       </div>
     </Flex>
   );

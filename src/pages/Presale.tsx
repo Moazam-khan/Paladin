@@ -8,6 +8,7 @@ import Web3 from 'web3';
 import {
   getMaxUserDeposit,
   getMinDepositCheck,
+  getPresaleById,
   getPresaleTotalDeposit,
   getTotalDepositedAmount,
   postTransaction,
@@ -20,6 +21,7 @@ const PreSale = (props: Props) => {
   const [totalEthDeposited, setTotalEthDeposited] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {address, isConnected, connector} = useAccount();
+  const [targetAmount, setTargetAmount] = useState<number>(0);
 
   useEffect(() => {
     const fetchTotalDeposits = async () => {
@@ -38,6 +40,23 @@ const PreSale = (props: Props) => {
     fetchTotalDeposits();
   }, []);
 
+  useEffect(() => {
+    const fetchPresaleDetails = async () => {
+      try {
+        const response = await getPresaleById(1);
+
+        if (!response.error) {
+          const parsedTargetAmount = parseFloat(response.target_amount);
+          setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
+        }
+      } catch (error) {
+        console.error('Failed to fetch presale details:', error);
+      }
+    };
+
+    fetchPresaleDetails();
+  }, []);
+
   const handleDeposit = async () => {
     if (!isConnected || !address || !connector) {
       message.error('Please connect your wallet first');
@@ -54,7 +73,10 @@ const PreSale = (props: Props) => {
         return;
       }
 
-      const maxUserDepositResponse = await getMaxUserDeposit(address, ethAmount);
+      const maxUserDepositResponse = await getMaxUserDeposit(
+        address,
+        ethAmount,
+      );
       if (maxUserDepositResponse.error) {
         message.error(maxUserDepositResponse.error);
         return;
@@ -66,42 +88,28 @@ const PreSale = (props: Props) => {
         return;
       }
 
-      // const transactionParameters = {
-      //   from: address,
-      //   to: '0xC495953DE50Ac375e3c564F4Acd4Cc48949576AE', // Update with your contract address
-      //   value: web3.utils.toWei(ethAmount.toString(), 'ether'),
-      //   gas: 60000,
-      // };
+      const transactionParameters = {
+        from: address,
+        to: '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
+        value: web3.utils.toWei(ethAmount.toString(), 'ether'),
+        gas: 60000,
+      };
 
-      // const transactionHash = await web3.eth.sendTransaction(
-      //   transactionParameters,
-      // );
+      const estimatedGas = await web3.eth.estimateGas(transactionParameters);
 
-      const tokenContract = new web3.eth.Contract(
-        erc20Abi,
-        '0xE5D3377465D5B1A0096f251Cd7F659dE041F374c',
-      );
+      transactionParameters.gas = Number(estimatedGas);;
 
-      const transaction = await tokenContract.methods
-        .transfer(
-          '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
-          fromReadableAmount(ethAmount),
-        )
-        .send({
-          from: address,
-        });
+      const transaction = await web3.eth.sendTransaction(transactionParameters);
 
       setTotalEthDeposited(totalEthDeposited + ethAmount);
       setEthAmount(0);
 
-      const transactionData = {
-        user_wallet_address: address,
-        presale_id: 1,
-        transaction_hash: transaction.transactionHash,
-        amount: ethAmount,
-      };
+      // const transactionData = {
+      //   user_wallet_address: address,
+      //   transaction_hash: transaction.transactionHash,
+      // };
 
-      await postTransaction(transactionData);
+      // await postTransaction(transactionData);
 
       message.success('Transaction recorded');
     } catch (error) {
@@ -127,7 +135,10 @@ const PreSale = (props: Props) => {
           </Col>
 
           <Col xs={24} lg={14}>
-            <PreSaleInfo totalEthDeposited={totalEthDeposited} />
+            <PreSaleInfo
+              totalEthDeposited={totalEthDeposited}
+              targetAmount={targetAmount}
+            />
           </Col>
         </Row>
       </Col>
