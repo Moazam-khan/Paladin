@@ -2,6 +2,7 @@ import {getNFTs} from '@/api/ApiCalls/nfts';
 import add from '@/assets/Add.png';
 import nftBoy from '@/assets/nft-boy.png';
 import nftGirl from '@/assets/nft-girl.png';
+import {useSelector} from '@/store';
 import {colors, fontFamily} from '@/utils';
 import {Col, Row} from 'antd';
 import {useEffect, useState} from 'react';
@@ -43,6 +44,7 @@ const fakeGems = [
 
 const LatestGems = (props: Props) => {
   const [nfts, setNFTs] = useState<Array<NFT>>([]);
+  const setBuyNftModal = useSelector().setBuyNftModal;
 
   useEffect(() => {
     const loadData = async () => {
@@ -109,7 +111,15 @@ const LatestGems = (props: Props) => {
           </Col>
           <Col xs={24} sm={8} md={4}>
             <div
+              onClick={() => {
+                setBuyNftModal({
+                  isOpen: true,
+                  address: '0x123',
+                  amount: 2,
+                });
+              }}
               style={{
+                cursor: 'pointer',
                 maxWidth: 200,
                 backdropFilter: 'blur(2px)',
                 backgroundColor: 'rgba(255, 255, 255, 0.05)',

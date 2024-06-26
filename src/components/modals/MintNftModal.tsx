@@ -129,7 +129,7 @@ const MintNftModal = (props: Props) => {
           textAlign: 'center',
           color: colors.textContrast,
         }}>
-        MINT AN NFT
+        MINT A NFT
       </Text>
       <Text style={{fontSize: 16, textAlign: 'center'}}>
         Join the Paladins Community!
