@@ -71,7 +71,7 @@ const PreSaleInfo = (props: Props) => {
         </Flex>
       </div>
       <div style={{marginTop: 'auto', paddingTop: 24}}>
-        <PreSaleProgressBar />
+        <PreSaleProgressBar progress={50} />
       </div>
     </Flex>
   );

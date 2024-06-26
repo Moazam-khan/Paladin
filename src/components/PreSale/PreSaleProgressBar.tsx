@@ -29,7 +29,7 @@ const Pin = (
   </div>
 );
 
-const PreSaleProgressBar = (props: Props) => {
+const PreSaleProgressBar = ({progress}: {progress: number}) => {
   return (
     <div style={{minHeight: 80}}>
       <Flex style={{marginBottom: 8, paddingLeft: '2%'}}>
@@ -59,7 +59,7 @@ const PreSaleProgressBar = (props: Props) => {
         }}>
         <div
           style={{
-            width: '50%',
+            width: `${progress}%`,
             height: '102%',
             backgroundColor: colors.primary,
             position: 'absolute',
