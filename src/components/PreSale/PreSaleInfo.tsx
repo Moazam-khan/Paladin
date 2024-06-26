@@ -72,8 +72,8 @@ const PreSaleInfo = ({ totalEthDeposited }: PreSaleInfoProps) => {
           </Text>
         </Flex>
       </div>
-      <div style={{ marginTop: 'auto', paddingTop: 24 }}>
-        <PreSaleProgressBar />
+      <div style={{marginTop: 'auto', paddingTop: 24}}>
+        <PreSaleProgressBar progress={50} />
       </div>
     </Flex>
   );
