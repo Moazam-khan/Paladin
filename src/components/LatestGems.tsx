@@ -42,13 +42,20 @@ const fakeGems = [
 ];
 
 const LatestGems = (props: Props) => {
-  const [nfts, setNFTs] = useState([]);
+  const [nfts, setNFTs] = useState<Array<NFT>>([]);
 
   useEffect(() => {
     const loadData = async () => {
       const data = await getNFTs();
-      console.log('latest gems', data);
-      setNFTs(data.data);
+
+      //use the first updated 4 nfts
+      const updatedNfts = data.data.sort(
+        (a: NFT, b: NFT) =>
+          new Date(b?.updated_at)?.getTime() -
+          new Date(a?.updated_at)?.getTime(),
+      );
+
+      setNFTs(updatedNfts.slice(0, 4));
     };
     loadData();
   }, []);
