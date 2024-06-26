@@ -70,7 +70,7 @@ const Footer = (props: Props) => {
     <Row
       gutter={[28, 56]}
       style={{
-        margin: '36px 24px',
+        margin: '36px 0',
       }}>
       <Col xs={24} md={8} lg={6}>
         <img src={logo} style={{height: 22}} />

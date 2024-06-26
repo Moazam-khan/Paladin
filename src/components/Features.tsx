@@ -77,7 +77,7 @@ const Features = (props: Props) => {
   return (
     <Row
       style={{
-        margin: 24,
+        margin: '24px 0',
         marginTop: 48,
       }}>
       <Col span={24}>
