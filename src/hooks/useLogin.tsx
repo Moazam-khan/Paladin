@@ -1,35 +1,37 @@
-import { useUser } from "@/contexts/UserContext";
-import { handleTwitterLogin, handleWalletLogin } from "@/utils/auth";
+import {useUser} from '@/contexts/UserContext';
+import {handleTwitterLogin, handleWalletLogin} from '@/utils/auth';
 import {
   useLogout,
   usePrivy,
   useLogin as usePrivyLogin,
-} from "@privy-io/react-auth";
-import { useDisconnect } from "wagmi";
+} from '@privy-io/react-auth';
+import {useNavigate} from 'react-router-dom';
+import {useDisconnect} from 'wagmi';
 
 const useLogin = () => {
-  const { ready, authenticated } = usePrivy();
+  const {ready, authenticated} = usePrivy();
+  const navigate = useNavigate();
 
-  const { refreshUser } = useUser();
-  const { login } = usePrivyLogin({
+  const {refreshUser} = useUser();
+  const {login} = usePrivyLogin({
     onComplete: async (
       user,
       isNewUser,
       wasAlreadyAuthenticated,
       loginMethod,
-      linkedAccount
+      linkedAccount,
     ) => {
       if (!wasAlreadyAuthenticated && isNewUser) {
         // if user was not already authenticated log them in in backend
         let backendResponse = null;
 
         switch (loginMethod) {
-          case "siwe":
+          case 'siwe':
             // handle siwe(wallet) login
             backendResponse = await handleWalletLogin(linkedAccount, user);
             // handle tiktok login
             break;
-          case "twitter":
+          case 'twitter':
             backendResponse = await handleTwitterLogin(linkedAccount, user);
             break;
           default:
@@ -46,12 +48,12 @@ const useLogin = () => {
       refreshUser();
     },
     onError: (error) => {
-      console.log(error, "--------error");
+      console.log(error, '--------error');
     },
   });
 
-  const { disconnect } = useDisconnect();
-  const { logout } = useLogout();
+  const {disconnect} = useDisconnect();
+  const {logout} = useLogout();
 
   const handleLogin = async () => {
     if (ready && !authenticated) {
@@ -63,10 +65,12 @@ const useLogin = () => {
     if (ready && authenticated) {
       await logout();
       disconnect();
+      // go to home page
+      navigate('/');
     }
   };
 
-  return { handleLogin, handleLogout };
+  return {handleLogin, handleLogout};
 };
 
 export default useLogin;

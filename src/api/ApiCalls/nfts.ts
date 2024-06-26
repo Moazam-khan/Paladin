@@ -1,14 +1,17 @@
-import axios from "../axios";
+import axios from '../axios';
 
-export const getNFTs = async (): Promise<any> => {
+export const getNFTs = async () => {
   try {
-    const endPoint = "/api/nfts/?collection=paladins-erc404-1";
-    const res = await axios.get<any>(endPoint);
-    if (!res?.data) throw "Something went wrong GetUser";
+    const endPoint = '/api/nfts/?collection=paladins-erc404-1';
+    const res = await axios.get<{
+      data: NFT[];
+      status: string;
+    }>(endPoint);
+    if (!res?.data) throw 'Something went wrong GetUser';
 
     return res.data;
   } catch (err) {
-    console.log("error get nfts", err);
+    console.log('error get nfts', err);
     return Promise.reject(err);
   }
 };
@@ -17,10 +20,10 @@ export const getNFTs = async (): Promise<any> => {
 export const getUserNfts = async (
   address: string,
   chain: string,
-  collection: string
+  collection: string,
 ) => {
   try {
-    const endPoint = "/api/nfts/account/";
+    const endPoint = '/api/nfts/account/';
     const res = await axios.get<{
       data: NFT[];
       success: boolean;
@@ -31,10 +34,10 @@ export const getUserNfts = async (
         address,
       },
     });
-    if (!res?.data) throw "Something went wrong GetUser";
+    if (!res?.data) throw 'Something went wrong GetUser';
     return res.data;
   } catch (error) {
-    console.log("error get user nfts", error);
+    console.log('error get user nfts', error);
     return Promise.reject(error);
   }
 };

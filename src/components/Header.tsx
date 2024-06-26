@@ -134,11 +134,13 @@ const Header = (props: Props) => {
             active={activeMenu === 'Presale'}>
             Presale
           </MenuItem>
-          <MenuItem
-            onClick={() => navigate('/myaccount')}
-            active={activeMenu === 'Account'}>
-            Account
-          </MenuItem>
+          {ready && authenticated && (
+            <MenuItem
+              onClick={() => navigate('/myaccount')}
+              active={activeMenu === 'Account'}>
+              Account
+            </MenuItem>
+          )}
         </Flex>
         {md ? (
           <>

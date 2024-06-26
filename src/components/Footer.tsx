@@ -1,7 +1,6 @@
 import logo from '@/assets/logo.png';
 import blend from '@/assets/social-blend.png';
 import discord from '@/assets/social-discord.png';
-import telegram from '@/assets/social-telegram.png';
 import twitter from '@/assets/social-twitter.png';
 import {useBreakpoint} from '@/hooks';
 import {colors, fontFamily} from '@/utils';
@@ -85,18 +84,33 @@ const Footer = (props: Props) => {
             lineHeight: '18px',
             marginTop: 10,
           }}>
-          Lorem ipsum dolor sit amet consectetur. Non curabitur egestas quis in
-          gravida parturient lacinia lacus.
+          Mint, Showcase, and Own Your Unique Creations in the World of NFTs HOW
+          TO MINT? Mint your ERC404.
         </Text>
         <Flex
           gap={20}
           style={{
             marginTop: 20,
           }}>
-          <img src={blend} height={24} />
-          <img src={telegram} height={24} />
-          <img src={twitter} height={24} />
-          <img src={discord} height={24} />
+          <a
+            href="https://medium.com/@paladinsdao"
+            target="_blank"
+            rel="noreferrer">
+            <img src={blend} height={24} />
+          </a>
+          {/* <img src={telegram} height={24} /> */}
+          <a
+            href="https://x.com/paladinsdao?lang=en"
+            target="_blank"
+            rel="noreferrer">
+            <img src={twitter} height={24} />
+          </a>
+          <a
+            href="https://discord.com/invite/paladinsdao"
+            target="_blank"
+            rel="noreferrer">
+            <img src={discord} height={24} />
+          </a>
         </Flex>
       </Col>
       <Col xs={24} md={16} lg={18}>
