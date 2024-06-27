@@ -22,6 +22,7 @@ const PreSale = (props: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {address, isConnected, connector} = useAccount();
   const [targetAmount, setTargetAmount] = useState<number>(0);
+  const [overflowAmount, setOverflowAmount] = useState<number>(0);
 
   useEffect(() => {
     const fetchTotalDeposits = async () => {
@@ -31,6 +32,9 @@ const PreSale = (props: Props) => {
           message.error(totalDepositResponse.error);
         } else {
           setTotalEthDeposited(totalDepositResponse.total_deposit || 0);
+          const parsedTargetAmount = parseFloat(totalDepositResponse.target_amount);
+          setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
+          setOverflowAmount(totalDepositResponse.overflow_amount || 0);
         }
       } catch (error) {
         message.error('Failed to fetch total deposits');
@@ -40,22 +44,22 @@ const PreSale = (props: Props) => {
     fetchTotalDeposits();
   }, []);
 
-  useEffect(() => {
-    const fetchPresaleDetails = async () => {
-      try {
-        const response = await getPresaleById(1);
+  // useEffect(() => {
+  //   const fetchPresaleDetails = async () => {
+  //     try {
+  //       const response = await getPresaleById(1);
 
-        if (!response.error) {
-          const parsedTargetAmount = parseFloat(response.target_amount);
-          setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
-        }
-      } catch (error) {
-        console.error('Failed to fetch presale details:', error);
-      }
-    };
+  //       if (!response.error) {
+  //         const parsedTargetAmount = parseFloat(response.target_amount);
+  //         setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
+  //       }
+  //     } catch (error) {
+  //       console.error('Failed to fetch presale details:', error);
+  //     }
+  //   };
 
-    fetchPresaleDetails();
-  }, []);
+  //   fetchPresaleDetails();
+  // }, []);
 
   const handleDeposit = async () => {
     if (!isConnected || !address || !connector) {
@@ -104,12 +108,12 @@ const PreSale = (props: Props) => {
       setTotalEthDeposited(totalEthDeposited + ethAmount);
       setEthAmount(0);
 
-      // const transactionData = {
-      //   user_wallet_address: address,
-      //   transaction_hash: transaction.transactionHash,
-      // };
+      const transactionData = {
+        user_wallet_address: address,
+        transaction_hash: transaction.transactionHash,
+      };
 
-      // await postTransaction(transactionData);
+      await postTransaction(transactionData);
 
       message.success('Transaction recorded');
     } catch (error) {
@@ -138,6 +142,7 @@ const PreSale = (props: Props) => {
             <PreSaleInfo
               totalEthDeposited={totalEthDeposited}
               targetAmount={targetAmount}
+              overflowAmount={overflowAmount}
             />
           </Col>
         </Row>
