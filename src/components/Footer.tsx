@@ -84,8 +84,7 @@ const Footer = (props: Props) => {
             lineHeight: '18px',
             marginTop: 10,
           }}>
-          Mint, Showcase, and Own Your Unique Creations in the World of NFTs HOW
-          TO MINT? Mint your ERC404.
+          Mint, Showcase, and Own Your Unique Creations in the World of NFT.
         </Text>
         <Flex
           gap={20}
