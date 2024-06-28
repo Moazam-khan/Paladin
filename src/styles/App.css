@@ -54,3 +54,9 @@
   align-self: center;
   margin-bottom: 18px;
 }
+
+.fix-font {
+  font-family: DarkerGrotesque;
+  font-weight: 600;
+  line-height: '100%';
+}

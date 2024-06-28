@@ -1,5 +1,5 @@
-import {colors} from '@/utils';
-import {Flex, Input} from 'antd';
+import {colors, fontFamily} from '@/utils';
+import {Flex, InputNumber} from 'antd';
 import Button from '../Button';
 import Text from '../Text';
 
@@ -51,16 +51,24 @@ const DepositCard = ({
           color="textDescriptionOnBlack">
           Deposit ETH
         </Text>
-        <Input
-          type="number"
+        <InputNumber
+          className="fix-font"
+          style={{
+            width: '100%',
+            fontFamily: fontFamily.darkerGrotesque,
+            fontWeight: 600,
+            lineHeight: '100%',
+          }}
+          controls={false}
           placeholder="Enter an amount"
           value={ethAmount}
           onChange={(e) => {
-            const value = parseFloat(e.target.value);
-            setEthAmount(isNaN(value) ? 0 : value);
+            //@ts-ignore
+            setEthAmount(e);
           }}
           suffix="ETH"
         />
+        {/* <Input type="number" /> */}
         <Button
           size="large"
           style={{

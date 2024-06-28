@@ -60,6 +60,22 @@ export const theme: ThemeConfig = {
       paddingBlock: 8,
       paddingInline: 14,
     },
+    InputNumber: {
+      colorTextPlaceholder: colors.textDescriptionOnBlack,
+      colorBgContainer: 'transparent',
+      borderRadius: 12,
+      colorPrimary: colors.btnPrimaryBorder,
+      hoverBorderColor: colors.btnPrimaryBorder,
+      colorBorder: colors.btnPrimaryBorder,
+      colorText: colors.white,
+      //typography
+      fontFamily: fontFamily.darkerGrotesque,
+      fontSize: 20,
+      inputFontSize: 20,
+      activeShadow: 'none',
+      paddingBlock: 8,
+      paddingInline: 14,
+    },
   },
   token: {
     fontFamily: 'Nippo',
