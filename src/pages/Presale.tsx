@@ -32,7 +32,9 @@ const PreSale = (props: Props) => {
           message.error(totalDepositResponse.error);
         } else {
           setTotalEthDeposited(totalDepositResponse.total_deposit || 0);
-          const parsedTargetAmount = parseFloat(totalDepositResponse.target_amount);
+          const parsedTargetAmount = parseFloat(
+            totalDepositResponse.target_amount,
+          );
           setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
           setOverflowAmount(totalDepositResponse.overflow_amount || 0);
         }
@@ -44,26 +46,14 @@ const PreSale = (props: Props) => {
     fetchTotalDeposits();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchPresaleDetails = async () => {
-  //     try {
-  //       const response = await getPresaleById(1);
-
-  //       if (!response.error) {
-  //         const parsedTargetAmount = parseFloat(response.target_amount);
-  //         setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
-  //       }
-  //     } catch (error) {
-  //       console.error('Failed to fetch presale details:', error);
-  //     }
-  //   };
-
-  //   fetchPresaleDetails();
-  // }, []);
-
   const handleDeposit = async () => {
     if (!isConnected || !address || !connector) {
       message.error('Please connect your wallet first');
+      return;
+    }
+
+    if (ethAmount < 0.05) {
+      message.error('Minimum deposit is 0.05 ETH');
       return;
     }
 
@@ -71,6 +61,13 @@ const PreSale = (props: Props) => {
 
     const web3 = new Web3((await connector?.getProvider()) as any);
     try {
+      const balance = await web3.eth.getBalance(address);
+      const balanceInEth = web3.utils.fromWei(balance, 'ether');
+      if (parseFloat(balanceInEth) < ethAmount) {
+        message.error('Insufficient ETH balance');
+        return;
+      }
+
       const minDepositCheckResponse = await getMinDepositCheck(ethAmount);
       if (minDepositCheckResponse.error) {
         message.error(minDepositCheckResponse.error);
@@ -101,7 +98,7 @@ const PreSale = (props: Props) => {
 
       const estimatedGas = await web3.eth.estimateGas(transactionParameters);
 
-      transactionParameters.gas = Number(estimatedGas);;
+      transactionParameters.gas = Number(estimatedGas);
 
       const transaction = await web3.eth.sendTransaction(transactionParameters);
 
