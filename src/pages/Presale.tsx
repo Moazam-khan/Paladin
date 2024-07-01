@@ -68,6 +68,12 @@ const PreSale = (props: Props) => {
         return;
       }
 
+      const totalDepositResponse = await getPresaleTotalDeposit();
+      if (totalDepositResponse.error) {
+        message.error(totalDepositResponse.error);
+        return;
+      }
+
       const minDepositCheckResponse = await getMinDepositCheck(ethAmount);
       if (minDepositCheckResponse.error) {
         message.error(minDepositCheckResponse.error);
@@ -78,14 +84,10 @@ const PreSale = (props: Props) => {
         address,
         ethAmount,
       );
+
+      console.log(maxUserDepositResponse.error)
       if (maxUserDepositResponse.error) {
         message.error(maxUserDepositResponse.error);
-        return;
-      }
-
-      const totalDepositResponse = await getPresaleTotalDeposit();
-      if (totalDepositResponse.error) {
-        message.error(totalDepositResponse.error);
         return;
       }
 

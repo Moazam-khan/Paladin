@@ -21,8 +21,12 @@ const PreSaleInfo = ({
     targetAmount: number,
     overflowAmount: number,
   ) => {
-    const effectiveTarget = targetAmount + overflowAmount;
-    return (totalEthDeposited / effectiveTarget) * 100;
+    const totalCap = targetAmount + overflowAmount;
+    const progressPercentage =
+      totalEthDeposited <= targetAmount
+        ? (totalEthDeposited / targetAmount) * 75
+        : 75 + ((totalEthDeposited - targetAmount) / overflowAmount) * 25;
+    return progressPercentage;
   };
 
   return (
