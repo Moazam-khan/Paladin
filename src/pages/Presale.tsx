@@ -1,14 +1,11 @@
 import {DepositCard, PreSaleHero, PreSaleInfo} from '@/components';
-import {fromReadableAmount} from '@/utils';
 import {Col, Row, message} from 'antd';
 import {useEffect, useState} from 'react';
-import {erc20Abi} from 'viem';
 import {useAccount} from 'wagmi';
 import Web3 from 'web3';
 import {
   getMaxUserDeposit,
   getMinDepositCheck,
-  getPresaleById,
   getPresaleTotalDeposit,
   getTotalDepositedAmount,
   postTransaction,
@@ -84,7 +81,7 @@ const PreSale = (props: Props) => {
         ethAmount,
       );
 
-      console.log(maxUserDepositResponse.error)
+      console.log(maxUserDepositResponse.error);
       if (maxUserDepositResponse.error) {
         message.error(maxUserDepositResponse.error);
         return;
@@ -92,7 +89,7 @@ const PreSale = (props: Props) => {
 
       const transactionParameters = {
         from: address,
-        to: '0x7868933a36Fb7771f5d87c65857F63C9264d28a4',
+        to: '0xAB8E63f581B54963D607BA77a6E4554cE87E0Ce5',
         value: web3.utils.toWei(ethAmount.toString(), 'ether'),
         gas: 60000,
       };
