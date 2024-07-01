@@ -53,11 +53,10 @@ export const updateUser = async (payload: FormData, user_id: number) => {
 };
 
 export const getMaxUserDeposit = async (
-  userAddress: string,
   amount: number,
 ) => {
   try {
-    const endpoint = `/api/user/max-user-deposit/${userAddress}/`;
+    const endpoint = `/api/user/max-user-deposit/`;
     const response = await axios.post(endpoint, {amount});
     return response.data;
   } catch (error) {

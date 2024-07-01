@@ -81,7 +81,6 @@ const PreSale = (props: Props) => {
       }
 
       const maxUserDepositResponse = await getMaxUserDeposit(
-        address,
         ethAmount,
       );
 
