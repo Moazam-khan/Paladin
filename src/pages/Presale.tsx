@@ -35,7 +35,7 @@ const PreSale = (props: Props) => {
           );
           setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
           setOverflowAmount(totalDepositResponse.overflow_amount || 0);
-           setBuyingStage(totalDepositResponse.buying_stage);
+          setBuyingStage(totalDepositResponse.buying_stage);
         }
       } catch (error) {
         message.error('Failed to fetch total deposits');
@@ -44,8 +44,6 @@ const PreSale = (props: Props) => {
 
     fetchTotalDeposits();
   }, []);
-
-
 
   const handleDeposit = async () => {
     if (!isConnected || !address || !connector) {
@@ -81,9 +79,7 @@ const PreSale = (props: Props) => {
         return;
       }
 
-      const maxUserDepositResponse = await getMaxUserDeposit(
-        ethAmount,
-      );
+      const maxUserDepositResponse = await getMaxUserDeposit(ethAmount);
 
       console.log(maxUserDepositResponse.error);
       if (maxUserDepositResponse.error) {
@@ -103,8 +99,6 @@ const PreSale = (props: Props) => {
       transactionParameters.gas = Number(estimatedGas);
 
       const transaction = await web3.eth.sendTransaction(transactionParameters);
-
-      setTotalEthDeposited(totalEthDeposited + ethAmount);
       setEthAmount(0);
 
       const transactionData = {
@@ -115,6 +109,7 @@ const PreSale = (props: Props) => {
       await postTransaction(transactionData);
 
       message.success('Transaction recorded');
+      setTotalEthDeposited(totalEthDeposited + ethAmount);
     } catch (error) {
       message.error(error as any);
     } finally {
