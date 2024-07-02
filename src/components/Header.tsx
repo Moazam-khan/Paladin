@@ -2,13 +2,13 @@ import logo from '@/assets/logo.png';
 import menu from '@/assets/menu.png';
 import wallet from '@/assets/wallet-2.png';
 import Sidebar from '@/components/Sidebar';
-import {useBreakpoint, useLogin} from '@/hooks';
-import {colors, truncateString} from '@/utils';
-import {usePrivy} from '@privy-io/react-auth';
-import {Flex, Row} from 'antd';
-import {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {useAccount} from 'wagmi';
+import { useBreakpoint, useLogin } from '@/hooks';
+import { colors, truncateString } from '@/utils';
+import { usePrivy } from '@privy-io/react-auth';
+import { Flex, Row } from 'antd';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAccount } from 'wagmi';
 import Button from './Button';
 import Text from './Text';
 type Props = {};
@@ -77,13 +77,13 @@ const menuFromPath = (path: string) => {
 const Header = (props: Props) => {
   const [activeMenu, setActiveMenu] = useState('Home');
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
-  const {md} = useBreakpoint();
-  const {address} = useAccount();
-  const {ready, authenticated} = usePrivy();
+  const { md } = useBreakpoint();
+  const { address } = useAccount();
+  const { ready, authenticated } = usePrivy();
   const [loading, setLoading] = useState<boolean>(false);
   let location = useLocation();
   const navigate = useNavigate();
-  const {handleLogin, handleLogout} = useLogin();
+  const { handleLogin, handleLogout } = useLogin();
 
   useEffect(() => {
     setActiveMenu(menuFromPath(location.pathname));
@@ -110,8 +110,8 @@ const Header = (props: Props) => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <img src={logo} style={{height: md ? 22 : 18}} />
-        <Flex gap={46} style={{display: md ? 'flex' : 'none'}}>
+        <img src={logo} style={{ height: md ? 22 : 18 }} />
+        <Flex gap={46} style={{ display: md ? 'flex' : 'none' }}>
           <MenuItem
             onClick={() => {
               navigate('/');
@@ -120,12 +120,17 @@ const Header = (props: Props) => {
             Home
           </MenuItem>
           <MenuItem
+            onClick={() => navigate('/nfts')}
+            active={activeMenu === 'NFTs'}>
+            NFTs
+          </MenuItem>
+          {/* <MenuItem
             onClick={() => {
               navigate('/mint');
             }}
             active={activeMenu === 'Mint'}>
             Mint
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem
             onClick={() => navigate('/staking')}
             active={activeMenu === 'Staking'}>
@@ -135,11 +140,6 @@ const Header = (props: Props) => {
             onClick={() => navigate('/presale')}
             active={activeMenu === 'Presale'}>
             Presale
-          </MenuItem>
-          <MenuItem
-            onClick={() => navigate('/nfts')}
-            active={activeMenu === 'NFTs'}>
-            NFTs
           </MenuItem>
           {ready && authenticated && (
             <MenuItem
@@ -184,7 +184,7 @@ const Header = (props: Props) => {
               padding: 10,
               gap: 16,
             }}>
-            <img src={wallet} style={{width: 24}} />
+            <img src={wallet} style={{ width: 24 }} />
             <div
               style={{
                 height: 24,
@@ -193,7 +193,7 @@ const Header = (props: Props) => {
             />
             <img
               src={menu}
-              style={{width: 24}}
+              style={{ width: 24 }}
               onClick={() => setSidebarOpen(true)}
             />
           </Row>

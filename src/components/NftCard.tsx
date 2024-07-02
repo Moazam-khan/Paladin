@@ -1,6 +1,5 @@
-import {useSelector} from '@/store';
-import {colors, fontFamily} from '@/utils';
-import Button from './Button';
+import { useSelector } from '@/store';
+import { colors, fontFamily } from '@/utils';
 import Text from './Text';
 
 type Props = NFT &
@@ -77,7 +76,7 @@ const NftCard = ({
           }}>
           #{collection}
         </Text>
-        {!owned && (
+        {/* {!owned && (
           <div
             style={{
               padding: 8,
@@ -94,10 +93,10 @@ const NftCard = ({
               2 PAL
             </Text>
           </div>
-        )}
+        )} */}
       </div>
 
-      {!owned && (
+      {/* {!owned && (
         <div
           style={{
             paddingTop: 16,
@@ -118,7 +117,7 @@ const NftCard = ({
             BUY NFT
           </Button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
