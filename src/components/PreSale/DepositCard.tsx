@@ -84,6 +84,19 @@ const DepositCard = ({
           disabled={isPending}>
           Deposit
         </Button>
+        {isLoading && (
+          <Text
+            ff="darkerGrotesque"
+            fw={600}
+            color="textDescriptionOnBlack"
+            fs={20}
+            style={{
+              alignSelf: 'flex-end',
+            }}
+          >
+            Processing, this may take some time...
+          </Text>
+        )}
       </Flex>
     </Flex>
   );

@@ -69,16 +69,16 @@ const PreSaleProgressBar: React.FC<PreSaleProgressBarProps> = ({
         }}>
         <div
           style={{
-            width: `${progress}%`,
+            width: `calc(2% + ${progress}%)`,
             height: '102%',
             backgroundColor: colors.primary,
             position: 'absolute',
             borderRadius: 36,
           }}
         />
-        <Pin style={{position: 'absolute', bottom: -8, left: '2%'}} value={totalEthDeposited} />
-        <Pin style={{position: 'absolute', left: '74%', bottom: -8}} value={totalTargetAmount}/>
-        <Pin style={{position: 'absolute', left: '95%', bottom: -8}} value={overflowAmount}/>
+        <Pin style={{ position: 'absolute', bottom: -8, left: '2%' }} value={totalEthDeposited} />
+        <Pin style={{ position: 'absolute', left: '74%', bottom: -8 }} value={totalTargetAmount} />
+        <Pin style={{ position: 'absolute', left: '95%', bottom: -8 }} value={overflowAmount} />
       </div>
     </div>
   );
