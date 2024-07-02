@@ -8,6 +8,7 @@ type DepositCardProps = {
   setEthAmount: (amount: number) => void;
   handleDeposit: () => void;
   isLoading: boolean;
+  isPending: boolean;
 };
 
 const DepositCard = ({
@@ -15,6 +16,7 @@ const DepositCard = ({
   setEthAmount,
   handleDeposit,
   isLoading,
+  isPending,
 }: DepositCardProps) => {
   return (
     <Flex
@@ -67,6 +69,7 @@ const DepositCard = ({
             setEthAmount(e);
           }}
           suffix="ETH"
+          disabled={isPending}
         />
         {/* <Input type="number" /> */}
         <Button
@@ -77,7 +80,8 @@ const DepositCard = ({
             marginTop: 18,
           }}
           onClick={handleDeposit}
-          loading={isLoading}>
+          loading={isLoading}
+          disabled={isPending}>
           Deposit
         </Button>
       </Flex>

@@ -20,6 +20,7 @@ const PreSale = (props: Props) => {
   const {address, isConnected, connector} = useAccount();
   const [targetAmount, setTargetAmount] = useState<number>(0);
   const [overflowAmount, setOverflowAmount] = useState<number>(0);
+  const [buyingStage, setBuyingStage] = useState<string>('presale');
 
   useEffect(() => {
     const fetchTotalDeposits = async () => {
@@ -34,6 +35,7 @@ const PreSale = (props: Props) => {
           );
           setTargetAmount(parseFloat(parsedTargetAmount.toFixed(3)));
           setOverflowAmount(totalDepositResponse.overflow_amount || 0);
+           setBuyingStage(totalDepositResponse.buying_stage);
         }
       } catch (error) {
         message.error('Failed to fetch total deposits');
@@ -42,6 +44,8 @@ const PreSale = (props: Props) => {
 
     fetchTotalDeposits();
   }, []);
+
+
 
   const handleDeposit = async () => {
     if (!isConnected || !address || !connector) {
@@ -130,6 +134,7 @@ const PreSale = (props: Props) => {
               setEthAmount={setEthAmount}
               handleDeposit={handleDeposit}
               isLoading={isLoading}
+              isPending={buyingStage === 'pending'}
             />
           </Col>
 
