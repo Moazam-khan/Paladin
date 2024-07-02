@@ -38,6 +38,7 @@ jobs:
         run: |
           touch .env
           echo CI=false >> .env
+          echo VITE_API_HOST=${{ secrets.VITE_API_HOST_DEV }} >> .env
 
       - name: Install dependencies
         id: npm-install
