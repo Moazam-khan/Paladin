@@ -41,7 +41,7 @@ jobs:
 
       - name: Install dependencies
         id: npm-install
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: Build site
         id: build-app
