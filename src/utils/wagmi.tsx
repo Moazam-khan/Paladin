@@ -10,7 +10,7 @@ export const metadata = {
 
 export const projectId = '4b6c5a37d94dc1cd55aae4056bd850ae';
 
-export const chains = [mainnet, bsc, sepolia, arbitrum] as const;
+export const chains = [mainnet, bsc, sepolia, arbitrum] as any;
 
 export const wagmiConfig = defaultWagmiConfig({
   chains,
