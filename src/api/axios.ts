@@ -1,15 +1,14 @@
-import axiosClient, { AxiosInstance } from "axios";
-import { getAccessToken } from "@privy-io/react-auth";
-import { clean } from "../utils";
+import {getAccessToken} from '@privy-io/react-auth';
+import axiosClient, {AxiosInstance} from 'axios';
+import {clean} from '../utils';
 
-const TIMEOUT = 35000; //15sec
-const SERVER_URL =
-  import.meta.env.VITE_API_HOST || "https://api.paladins.baboons.tech";
+const TIMEOUT = 70000; // 30 seconds
+const SERVER_URL = import.meta.env.VITE_API_HOST || 'http://127.0.0.1:8000/';
 
 const axios: AxiosInstance = axiosClient.create({
   baseURL: SERVER_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
   params: clean({
     t: new Date().getTime(),
@@ -23,13 +22,13 @@ axios.interceptors.request.use(
     const token = await getAccessToken();
 
     if (token && config?.headers) {
-      config.headers["Authorization"] = "Bearer " + token;
+      config.headers['Authorization'] = 'Bearer ' + token;
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axios.interceptors.response.use(
@@ -37,10 +36,10 @@ axios.interceptors.response.use(
     return res;
   },
   async (err) => {
-    console.log("err response in intercept resp", err);
+    console.log('err response in intercept resp', err);
 
     return Promise.reject(err);
-  }
+  },
 );
 
 export default axios;

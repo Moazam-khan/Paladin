@@ -6,12 +6,11 @@ import {Route, Routes} from 'react-router-dom';
 function App() {
   return (
     <AppLayout>
-      x
       <Routes>
         <Route path="*" element={<Home />} />
         <Route path="nfts" element={<Nfts />} />
         <Route path="myAccount" element={<MyAccount />} />
-        <Route path="preSale" element={<PreSale />} />
+        <Route path="presale" element={<PreSale />} />
       </Routes>
     </AppLayout>
   );

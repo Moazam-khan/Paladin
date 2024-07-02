@@ -1,11 +1,23 @@
-import {colors} from '@/utils';
-import {Flex, Input} from 'antd';
+import {colors, fontFamily} from '@/utils';
+import {Flex, InputNumber} from 'antd';
 import Button from '../Button';
 import Text from '../Text';
 
-type Props = {};
+type DepositCardProps = {
+  ethAmount: number;
+  setEthAmount: (amount: number) => void;
+  handleDeposit: () => void;
+  isLoading: boolean;
+  isPending: boolean;
+};
 
-const DepositCard = (props: Props) => {
+const DepositCard = ({
+  ethAmount,
+  setEthAmount,
+  handleDeposit,
+  isLoading,
+  isPending,
+}: DepositCardProps) => {
   return (
     <Flex
       style={{
@@ -41,14 +53,35 @@ const DepositCard = (props: Props) => {
           color="textDescriptionOnBlack">
           Deposit ETH
         </Text>
-        <Input type="number" placeholder="Enter an amount" suffix="ETH" />
+        <InputNumber
+          className="fix-font"
+          style={{
+            width: '100%',
+            fontFamily: fontFamily.darkerGrotesque,
+            fontWeight: 600,
+            lineHeight: '100%',
+          }}
+          controls={false}
+          placeholder="Enter an amount"
+          value={ethAmount}
+          onChange={(e) => {
+            //@ts-ignore
+            setEthAmount(e);
+          }}
+          suffix="ETH"
+          disabled={isPending}
+        />
+        {/* <Input type="number" /> */}
         <Button
           size="large"
           style={{
             alignSelf: 'flex-end',
             width: 227,
             marginTop: 18,
-          }}>
+          }}
+          onClick={handleDeposit}
+          loading={isLoading}
+          disabled={isPending}>
           Deposit
         </Button>
       </Flex>

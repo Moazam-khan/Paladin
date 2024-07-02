@@ -1,3 +1,5 @@
+import Web3 from "web3";
+
 export const truncateString = (str: string, length: number) => {
   if (str.length > length) {
     return str.slice(0, length) + "...";
@@ -23,4 +25,8 @@ export function shortenAddress(address: string, length = 4) {
   const start = address.slice(0, length);
   const end = address.slice(-length);
   return `${start}...${end}`;
+}
+
+export function fromReadableAmount(amount: any) {
+  return Web3.utils.toWei(amount.toString(), "ether");
 }

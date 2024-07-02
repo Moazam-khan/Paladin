@@ -3,15 +3,20 @@ import {Flex} from 'antd';
 import React from 'react';
 import Text from '../Text';
 
-type Props = {};
+type PinProps = {
+  value: number;
+  style?: React.CSSProperties;
+};
 
-const Pin = (
-  props: React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  >,
-) => (
-  <div {...props}>
+type PreSaleProgressBarProps = {
+  progress: number;
+  totalEthDeposited: number;
+  totalTargetAmount: number;
+  overflowAmount: number;
+};
+
+const Pin: React.FC<PinProps> = ({value = '0', style}) => (
+  <div style={{position: 'relative', textAlign: 'center', ...style}}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="12"
@@ -24,12 +29,17 @@ const Pin = (
       />
     </svg>
     <Text style={{position: 'absolute', width: 60, bottom: -32, left: -15}}>
-      0 ETH
+      {value} ETH
     </Text>
   </div>
 );
 
-const PreSaleProgressBar = ({progress}: {progress: number}) => {
+const PreSaleProgressBar: React.FC<PreSaleProgressBarProps> = ({
+  progress,
+  totalEthDeposited,
+  totalTargetAmount,
+  overflowAmount,
+}) => {
   return (
     <div style={{minHeight: 80}}>
       <Flex style={{marginBottom: 8, paddingLeft: '2%'}}>
@@ -66,15 +76,9 @@ const PreSaleProgressBar = ({progress}: {progress: number}) => {
             borderRadius: 36,
           }}
         />
-        <Pin style={{position: 'absolute', bottom: -8, left: '2%'}} />
-        <Pin style={{position: 'absolute', left: '75%', bottom: -8}} />
-        <Pin style={{position: 'absolute', left: '95%', bottom: -8}} />
-
-        {/* <Flex style={{position: 'relative', top: '20px'}}>
-        <Text style={{marginLeft: '2%'}}>0 ETH</Text>
-        <Text style={{marginLeft: '60%'}}>20 ETH</Text>
-        <Text style={{marginLeft: '10%'}}>30 ETH</Text>
-      </Flex> */}
+        <Pin style={{position: 'absolute', bottom: -8, left: '2%'}} value={totalEthDeposited} />
+        <Pin style={{position: 'absolute', left: '74%', bottom: -8}} value={totalTargetAmount}/>
+        <Pin style={{position: 'absolute', left: '95%', bottom: -8}} value={overflowAmount}/>
       </div>
     </div>
   );

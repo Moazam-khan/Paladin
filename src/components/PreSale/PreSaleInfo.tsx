@@ -4,10 +4,31 @@ import {Flex} from 'antd';
 import Text from '../Text';
 import PreSaleProgressBar from './PreSaleProgressBar';
 
-type Props = {};
+type PreSaleInfoProps = {
+  totalEthDeposited: number;
+  targetAmount: number;
+  overflowAmount: number;
+};
 
-const PreSaleInfo = (props: Props) => {
+const PreSaleInfo = ({
+  totalEthDeposited,
+  targetAmount,
+  overflowAmount,
+}: PreSaleInfoProps) => {
   const {md} = useBreakpoint();
+  const calculateProgress = (
+    totalEthDeposited: number,
+    targetAmount: number,
+    overflowAmount: number,
+  ) => {
+    const totalCap = targetAmount + overflowAmount;
+    const progressPercentage =
+      totalEthDeposited <= targetAmount
+        ? (totalEthDeposited / targetAmount) * 75
+        : 75 + ((totalEthDeposited - targetAmount) / overflowAmount) * 25;
+    return progressPercentage;
+  };
+
   return (
     <Flex
       style={{
@@ -19,7 +40,6 @@ const PreSaleInfo = (props: Props) => {
         flexDirection: 'column',
         gap: 20,
         height: '100%',
-        // justifyContent: 'space-between',
       }}>
       <Text
         center
@@ -28,7 +48,10 @@ const PreSaleInfo = (props: Props) => {
         fw={500}
         style={{letterSpacing: '1.68px', lineHeight: '100%'}}>
         TOTAL DEPOSITED <br />
-        <span style={{color: colors.textContrast}}>15.2 </span>ETH
+        <span style={{color: colors.textContrast}}>
+          {totalEthDeposited}
+        </span>{' '}
+        ETH
       </Text>
       <div style={{opacity: 0.45}}>
         <Flex style={{borderRadius: 8, padding: 10}} justify="space-between">
@@ -71,7 +94,16 @@ const PreSaleInfo = (props: Props) => {
         </Flex>
       </div>
       <div style={{marginTop: 'auto', paddingTop: 24}}>
-        <PreSaleProgressBar progress={50} />
+        <PreSaleProgressBar
+          progress={calculateProgress(
+            totalEthDeposited,
+            targetAmount,
+            overflowAmount,
+          )}
+          totalEthDeposited={totalEthDeposited}
+          totalTargetAmount={targetAmount}
+          overflowAmount={overflowAmount}
+        />
       </div>
     </Flex>
   );
