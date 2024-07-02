@@ -25,7 +25,7 @@ const PreSale = (props: Props) => {
   useEffect(() => {
     const fetchTotalDeposits = async () => {
       try {
-        const totalDepositResponse = await getTotalDepositedAmount();
+        const totalDepositResponse: any = await getTotalDepositedAmount();
         if (totalDepositResponse.error) {
           message.error(totalDepositResponse.error);
         } else {
