@@ -6,4 +6,5 @@ declare interface ITypography {
   fw?: number;
   color?: keyof typeof colors;
   center?: boolean;
+  normal?: boolean;
 }

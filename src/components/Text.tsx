@@ -13,6 +13,7 @@ const Text = ({
   color,
   center,
   style,
+  normal = false,
   ...props
 }: Props) => (
   <AntdText
@@ -22,6 +23,7 @@ const Text = ({
       fontWeight: fw,
       color: color ? colors[color] || color : colors.white,
       textAlign: center ? 'center' : style?.textAlign || 'left',
+      ...(normal && {lineHeight: 'normal'}),
       ...style,
     }}
     {...props}

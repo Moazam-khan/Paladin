@@ -105,6 +105,7 @@ const NftCard = ({
             paddingBottom: 16,
           }}>
           <Button
+            size="large"
             onClick={() => {
               setBuyNftModal({
                 isOpen: true,

@@ -67,6 +67,8 @@ const menuFromPath = (path: string) => {
       return 'Presale';
     case '/myaccount':
       return 'Account';
+    case '/nfts':
+      return 'NFTs';
     default:
       return 'Home';
   }
@@ -133,6 +135,11 @@ const Header = (props: Props) => {
             onClick={() => navigate('/presale')}
             active={activeMenu === 'Presale'}>
             Presale
+          </MenuItem>
+          <MenuItem
+            onClick={() => navigate('/nfts')}
+            active={activeMenu === 'NFTs'}>
+            NFTs
           </MenuItem>
           {ready && authenticated && (
             <MenuItem

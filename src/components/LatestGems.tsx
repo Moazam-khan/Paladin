@@ -61,6 +61,7 @@ const LatestGems = (props: Props) => {
     };
     loadData();
   }, []);
+
   return (
     <Row
       style={{
