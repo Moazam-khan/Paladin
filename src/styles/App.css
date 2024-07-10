@@ -60,3 +60,8 @@
   font-weight: 600;
   line-height: '100%';
 }
+
+.ant-dropdown .ant-dropdown-menu {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

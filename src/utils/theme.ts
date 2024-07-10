@@ -30,6 +30,9 @@ export const colors = {
 
 export const theme: ThemeConfig = {
   components: {
+    Dropdown: {
+      colorBgElevated: '#171717',
+    },
     Typography: {
       colorText: 'white',
     },
@@ -37,6 +40,7 @@ export const theme: ThemeConfig = {
       colorPrimary: 'transparent',
       colorPrimaryHover: 'transparent',
       borderRadius: 0,
+      colorTextDisabled: 'White',
     },
     Spin: {
       colorPrimary: colors.primary,
