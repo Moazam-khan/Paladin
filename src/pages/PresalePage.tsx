@@ -129,7 +129,7 @@ const PreSale = (props: Props) => {
               setEthAmount={setEthAmount}
               handleDeposit={handleDeposit}
               isLoading={isLoading}
-              isPending={buyingStage === 'pending'}
+              isPending={buyingStage === 'pending' || buyingStage === 'closed'}
             />
           </Col>
 

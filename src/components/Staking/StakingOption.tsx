@@ -1,7 +1,6 @@
 import {useBreakpoint} from '@/hooks';
-import {Col, Row} from 'antd';
+import {Col, Input, Row} from 'antd';
 import {Dispatch, SetStateAction} from 'react';
-import info from '../../assets/info-circle.png';
 import Text from '../Text';
 
 interface StakingOptionProp {
@@ -13,19 +12,19 @@ const StakingOption = (props: StakingOptionProp) => {
   const {estimatedAPY, setEstimatedAPY} = props;
   const {sm, md, lg, xl} = useBreakpoint();
   return (
-    <Row style={{marginTop: '24px', width: '100%'}}>
+    <Row style={{marginTop: '24px', width: '100%', marginBottom: '24px'}}>
       <Row
         style={{
           paddingBottom: '12px',
           borderBottom: '1px solid rgba(255, 255, 255, 0.10)',
           width: '100%',
-          marginBottom: '24px',
+          marginBottom: '16px',
         }}>
         <Text fs={18} fw={600} ff={'darkerGrotesque'} color="white50">
           Staking Options
         </Text>
       </Row>
-      <Row style={{width: '100%'}}>
+      {/* <Row style={{width: '100%'}}>
         <Col
           span={24}
           style={{
@@ -76,7 +75,22 @@ const StakingOption = (props: StakingOptionProp) => {
             }}
           />
         </Col>
+      </Row> */}
+      <Row
+        style={{
+          width: '100%',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '8px',
+        }}>
+        <Text fs={14} fw={600} ff="darkerGrotesque" style={{color: '#7D7D7D'}}>
+          Enter stake amount
+        </Text>
+        <Text fs={14} fw={600} ff="darkerGrotesque">
+          Balance: 12.957373 $PAL
+        </Text>
       </Row>
+      <Input />
     </Row>
   );
 };

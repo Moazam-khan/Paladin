@@ -1,11 +1,19 @@
+import {useBreakpoint} from '@/hooks';
 import {CaretDownOutlined} from '@ant-design/icons';
 import {Col, Dropdown, Menu, Row} from 'antd';
+import {useState} from 'react';
+import line from '../../assets/Line10.png';
 import frampic from '../../assets/PictureFrame.png';
 import info from '../../assets/info-circle.png';
+import tag from '../../assets/tag.png';
 import Text from '../Text';
 
-// Dummy data for NFTs
-const nftData = [
+interface NftData {
+  name: string;
+  value: string;
+  icon: string;
+}
+const nftData: NftData[] = [
   {
     name: 'PALADINS #38916',
     value: '1 $PAL',
@@ -24,6 +32,9 @@ const nftData = [
 ];
 
 const SelectNFT = () => {
+  const [selected, setSelected] = useState<NftData | null>(null);
+  const {sm, md, lg, xl} = useBreakpoint();
+
   const items = nftData.map((nft, index) => {
     return {
       label: (
@@ -33,7 +44,8 @@ const SelectNFT = () => {
             alignItems: 'center',
             width: '100%',
             padding: '6px 0px',
-          }}>
+          }}
+          onClick={() => setSelected(nft)}>
           <Col style={{display: 'flex', gap: '8px', alignItems: 'center'}}>
             <img
               src={nft.icon}
@@ -104,10 +116,85 @@ const SelectNFT = () => {
             border: '1px solid #525252',
             justifyContent: 'space-between',
           }}>
-          <Text>Select</Text>
+          <Text fs={18} fw={400} ff="nippo">
+            {selected ? selected.name : 'Select'}
+          </Text>
           <CaretDownOutlined />
         </div>
       </Dropdown>
+      {selected && (
+        <Row
+          style={{
+            width: '100%',
+            marginTop: '12px',
+            padding: '16px',
+            borderRadius: '18px',
+            border: '1px solid rgba(255, 255, 255, 0.10)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            justifyContent: 'space-between',
+            gap: '24px',
+            flexDirection: sm ? 'row' : 'column',
+          }}>
+          <Col
+            style={{
+              display: 'flex',
+              gap: '24px',
+              flexDirection: sm ? 'row' : 'column',
+            }}>
+            <Row
+              style={{
+                justifyContent: 'center',
+              }}>
+              <img
+                src={selected ? selected.icon : ''}
+                style={{
+                  height: sm ? '111px' : '250px',
+                  width: sm ? '109px' : '291px',
+                  borderRadius: '7px',
+                }}
+              />
+            </Row>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: '20px',
+              }}>
+              <Text fs={16} fw={400} style={{color: '#FFCB3A'}}>
+                {selected?.name}
+              </Text>
+              <div
+                style={{
+                  padding: '4px 14px',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.10)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  maxWidth: '178px',
+                }}>
+                <Text
+                  fs={14}
+                  fw={600}
+                  ff="darkerGrotesque"
+                  style={{color: 'rgba(255, 255, 255, 0.50)'}}>
+                  Token Holdings
+                </Text>
+                <img src={line} />
+                <Text
+                  fs={16}
+                  fw={600}
+                  ff="darkerGrotesque"
+                  style={{color: '#FFCB3A'}}>
+                  {selected?.value}
+                </Text>
+              </div>
+            </div>
+          </Col>
+          <img src={tag} style={{height: '24px', width: '24px'}} />
+        </Row>
+      )}
     </Row>
   );
 };
