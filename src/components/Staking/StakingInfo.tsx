@@ -1,5 +1,6 @@
 import {useBreakpoint} from '@/hooks';
 import {fontFamily} from '@/utils';
+import stakeTokens from '@/utils/staking';
 import {Col, Row} from 'antd';
 import {useState} from 'react';
 import Button from '../Button';
@@ -47,6 +48,7 @@ const StakingInfo = () => {
           setEstimatedAPY={setEstimatedAPY}
         />
         <Button
+          onClick={stakeTokens}
           style={{width: md ? '227px' : '100%'}}
           size="large"
           disabled={estimatedAPY ? false : true}>
