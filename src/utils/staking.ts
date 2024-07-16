@@ -1,20 +1,24 @@
 //Staking contracts logic
-import {parseEther} from 'viem';
-import {waitForTransactionReceipt, writeContract} from 'wagmi/actions';
+
+import {
+  readContract,
+  waitForTransactionReceipt,
+  writeContract,
+} from 'wagmi/actions';
+
 import paladins from '../abis/paladins.json';
 import stakingABI from '../abis/stakingAbi.json';
 import {CORE_CONTRACT_ADDRESS, STAKING_CONTRACT_ADDRESS} from '../constants';
 import {config} from './wagmi';
-const stakeTokens = async () => {
-  console.log('unstaking tokens ');
+const stakeTokens = async (tokenAmount: bigint) => {
   try {
-    await approveTokens();
+    await approveTokens(tokenAmount);
     //@ts-ignore
     const tx = await writeContract(config, {
       abi: stakingABI,
       address: STAKING_CONTRACT_ADDRESS,
       functionName: 'stake',
-      args: [parseEther('1')],
+      args: [tokenAmount],
     });
     console.log(tx);
     //@ts-ignore
@@ -22,13 +26,27 @@ const stakeTokens = async () => {
     console.log(error.message);
   }
 };
-const approveTokens = async () => {
+const fetchBalance = async (address: any): Promise<bigint> => {
+  try {
+    const balance: bigint = (await readContract(config, {
+      abi: paladins,
+      address: CORE_CONTRACT_ADDRESS,
+      functionName: 'balanceOf',
+      args: [address],
+    })) as bigint;
+    return balance;
+  } catch (error) {
+    console.log('error ', error);
+    return 0n;
+  }
+};
+const approveTokens = async (tokenAmount: bigint) => {
   try {
     const tx = await writeContract(config, {
       abi: paladins,
       address: CORE_CONTRACT_ADDRESS,
       functionName: 'erc20Approve',
-      args: [STAKING_CONTRACT_ADDRESS, parseEther('1')],
+      args: [STAKING_CONTRACT_ADDRESS, tokenAmount],
     });
     const transactionReceipt = await waitForTransactionReceipt(config, {
       hash: tx,
@@ -39,4 +57,4 @@ const approveTokens = async () => {
     console.log(error.message);
   }
 };
-export default stakeTokens;
+export {fetchBalance, stakeTokens};

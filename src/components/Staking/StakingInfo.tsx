@@ -1,13 +1,16 @@
 import {useBreakpoint} from '@/hooks';
+import {stakeTokens} from '@/utils/staking';
 import {Col, ConfigProvider, Row} from 'antd';
 import {useState} from 'react';
+import {parseEther} from 'viem';
 import Button from '../Button';
 import Text from '../Text';
 import StakingOption from './StakingOption';
 
 const StakingInfo = () => {
   const {sm, md, lg, xl} = useBreakpoint();
-  const [estimatedAPY, setEstimatedAPY] = useState<number>();
+  const [stakeAmount, setStakeAmount] = useState<number>(0);
+
   return (
     <ConfigProvider
       theme={{
@@ -52,14 +55,16 @@ const StakingInfo = () => {
         </Row>
         <SelectNFT /> */}
           <StakingOption
-            estimatedAPY={estimatedAPY}
-            setEstimatedAPY={setEstimatedAPY}
+            stakeAmount={stakeAmount}
+            setStakeAmount={setStakeAmount}
           />
           <Button
             style={{width: md ? '227px' : '100%'}}
             size="large"
             //disabled={estimatedAPY ? false : true}
-          >
+            onClick={() => {
+              stakeTokens(parseEther(stakeAmount.toString()));
+            }}>
             Stake
           </Button>
         </Col>
