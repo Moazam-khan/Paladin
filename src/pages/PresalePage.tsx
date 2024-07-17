@@ -110,6 +110,11 @@ const PreSale = (props: Props) => {
 
       message.success('Transaction recorded');
       setTotalEthDeposited(totalEthDeposited + ethAmount);
+
+      const updatedDepositResponse = await getTotalDepositedAmount();
+      if (!updatedDepositResponse.error) {
+        setBuyingStage(updatedDepositResponse.buying_stage);
+      }
     } catch (error) {
       message.error(error as any);
     } finally {
