@@ -6,6 +6,7 @@ import {
   writeContract,
 } from 'wagmi/actions';
 
+import {formatEther} from 'viem';
 import paladins from '../abis/paladins.json';
 import stakingABI from '../abis/stakingAbi.json';
 import {CORE_CONTRACT_ADDRESS, STAKING_CONTRACT_ADDRESS} from '../constants';
@@ -57,4 +58,28 @@ const approveTokens = async (tokenAmount: bigint) => {
     console.log(error.message);
   }
 };
-export {fetchBalance, stakeTokens};
+
+const calculateYeildPoint = async (address: any) => {
+  let userStaked;
+  try {
+    userStaked = await readContract(config, {
+      address: STAKING_CONTRACT_ADDRESS,
+      abi: stakingABI,
+      functionName: 'userStake',
+      args: [address],
+    });
+  } catch (error) {
+    console.log('calculateYeildError', error);
+  }
+  const rewardRate = 0.001;
+  //@ts-ignore
+  const tokensStaked = formatEther(userStaked[0] as bigint);
+  //@ts-ignore
+  const depositTime = userStaked[2] as bigint;
+  const date = new Date(parseInt(depositTime.toString()) * 1000);
+  const minutes = date.getMinutes();
+  const yeildPoint = rewardRate * minutes * parseFloat(tokensStaked);
+  console.log('yeildPoint = ', yeildPoint);
+  return yeildPoint;
+};
+export {calculateYeildPoint, fetchBalance, stakeTokens};
