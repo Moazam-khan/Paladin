@@ -1,7 +1,7 @@
 import {useBreakpoint} from '@/hooks';
 import {config} from '@/utils';
 import {fetchBalance} from '@/utils/staking';
-import {Col, Input, Row} from 'antd';
+import {Col, InputNumber, Row} from 'antd';
 import {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {formatEther} from 'viem';
 import {useAccount} from 'wagmi';
@@ -114,11 +114,16 @@ const StakingOption = (props: StakingOptionProp) => {
           Balance: {userbalance} $PAL
         </Text>
       </Row>
-      <Input
-        type="number"
-        step={'any'}
+      <InputNumber
+        inputMode="decimal"
         value={stakeAmount}
-        onChange={(e) => setStakeAmount(parseFloat(e.target.value))}
+        onChange={(value) => {
+          if (value) {
+            setStakeAmount(value);
+          } else {
+            setStakeAmount(0);
+          }
+        }}
       />
     </Row>
   );
