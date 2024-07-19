@@ -71,15 +71,17 @@ const calculateYeildPoint = async (address: any) => {
   } catch (error) {
     console.log('calculateYeildError', error);
   }
-  const rewardRate = 0.001;
+  const rewardRate = 0.001; // 0.1 %
   //@ts-ignore
   const tokensStaked = formatEther(userStaked[0] as bigint);
   //@ts-ignore
   const depositTime = userStaked[2] as bigint;
-  const date = new Date(parseInt(depositTime.toString()) * 1000);
-  const minutes = date.getMinutes();
-  const yeildPoint = rewardRate * minutes * parseFloat(tokensStaked);
-  console.log('yeildPoint = ', yeildPoint);
+  const depositDate = new Date(parseInt(depositTime.toString()) * 1000);
+  const currentDate = new Date();
+  // Reward per minute
+  const timeElapsed = currentDate.getTime() - depositDate.getTime();
+  const timeElapsedMinutes = Math.floor(timeElapsed / (1000 * 60));
+  const yeildPoint = rewardRate * timeElapsedMinutes * parseFloat(tokensStaked);
   return yeildPoint;
 };
 export {calculateYeildPoint, fetchBalance, stakeTokens};
