@@ -1,16 +1,40 @@
 import {useBreakpoint} from '@/hooks';
-import {Col, Input, Row} from 'antd';
-import {Dispatch, SetStateAction} from 'react';
+import {config} from '@/utils';
+import {fetchBalance} from '@/utils/staking';
+import {Col, InputNumber, Row} from 'antd';
+import {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {formatEther} from 'viem';
+import {useAccount} from 'wagmi';
+import {getAccount} from 'wagmi/actions';
 import Text from '../Text';
-
 interface StakingOptionProp {
-  estimatedAPY: number | undefined;
-  setEstimatedAPY: Dispatch<SetStateAction<number | undefined>>;
+  stakeAmount: number;
+  setStakeAmount: Dispatch<SetStateAction<number>>;
 }
 
 const StakingOption = (props: StakingOptionProp) => {
-  const {estimatedAPY, setEstimatedAPY} = props;
+  const {stakeAmount, setStakeAmount} = props;
+  const [userbalance, setUserBalance] = useState('0');
   const {sm, md, lg, xl} = useBreakpoint();
+  const {address} = useAccount();
+  console.log('stake value = ', stakeAmount);
+  useEffect(() => {
+    const fetch = async () => {
+      const account = getAccount(config);
+      console.log('account = ', account);
+      try {
+        const result = await fetchBalance(address); // Assuming fetchBalance is defined elsewhere
+        console.log('Balance fetched');
+        console.log(result);
+        setUserBalance(formatEther(result));
+      } catch (error) {
+        console.error('Error fetching balance:', error);
+      }
+    };
+
+    fetch();
+  }, []);
+
   return (
     <Row style={{marginTop: '24px', width: '100%', marginBottom: '24px'}}>
       <Row
@@ -87,10 +111,20 @@ const StakingOption = (props: StakingOptionProp) => {
           Enter stake amount
         </Text>
         <Text fs={14} fw={600} ff="darkerGrotesque">
-          Balance: 12.957373 $PAL
+          Balance: {userbalance} $PAL
         </Text>
       </Row>
-      <Input />
+      <InputNumber
+        inputMode="decimal"
+        value={stakeAmount}
+        onChange={(value) => {
+          if (value) {
+            setStakeAmount(value);
+          } else {
+            setStakeAmount(0);
+          }
+        }}
+      />
     </Row>
   );
 };
