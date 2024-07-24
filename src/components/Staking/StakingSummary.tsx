@@ -36,7 +36,19 @@ const StakingSummary = () => {
             backgroundImage: `url(${staking})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-          }}></Col>
+            flexDirection: 'column',
+          }}>
+          <Text
+            ff="darkerGrotesque"
+            fs={16}
+            fw={600}
+            style={{color: 'rgba(255, 255, 255, 0.50)', lineHeight: '12px'}}>
+            Stacked
+          </Text>
+          <Text ff="nippo" fs={18} fw={400}>
+            0.7 $PAl
+          </Text>
+        </Col>
         <Col
           style={{
             display: 'flex',
