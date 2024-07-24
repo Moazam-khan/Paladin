@@ -49,6 +49,7 @@ const StakingInfo = () => {
             paddingBottom: '12px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.10)',
           }}>
+
           <Text
             fs={18}
             fw={600}
