@@ -1,7 +1,7 @@
 import {useBreakpoint} from '@/hooks';
 import {Col, Row} from 'antd';
 import purpleLock from '../../assets/purpleLock.png';
-//import staking from '../../assets/staking-summary.svg';
+import staking from '../../assets/staking-summary.svg';
 import yellowLock from '../../assets/yellowLock.png';
 import Text from '../Text';
 
@@ -33,8 +33,8 @@ const StakingSummary = () => {
             height: '150px',
             justifyContent: 'center',
             alignItems: 'center',
-            //background: `url(${staking})`,
-            backgroundColor: 'red',
+            backgroundImage: `${staking}`,
+            //backgroundColor: 'red',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             flexDirection: 'column',
