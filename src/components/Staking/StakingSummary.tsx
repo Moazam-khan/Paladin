@@ -1,12 +1,12 @@
-import {useBreakpoint} from '@/hooks';
-import {Col, Row} from 'antd';
+import staking from '@/assets/staking-summary.svg';
+import { useBreakpoint } from '@/hooks';
+import { Col, Row } from 'antd';
 import purpleLock from '../../assets/purpleLock.png';
-import staking from '../../assets/staking-summary.svg';
 import yellowLock from '../../assets/yellowLock.png';
 import Text from '../Text';
 
 const StakingSummary = () => {
-  const {xs, sm, md, lg, xl} = useBreakpoint();
+  const { xs, sm, md, lg, xl } = useBreakpoint();
   return (
     <Col
       style={{
@@ -16,7 +16,7 @@ const StakingSummary = () => {
         backgroundColor: '#171717',
         padding: md ? '36px' : '24px',
       }}>
-      <Text fs={24} fw={400} style={{fontFamily: 'Nippo'}}>
+      <Text fs={24} fw={400} style={{ fontFamily: 'Nippo' }}>
         Staking Summary
       </Text>
       <Row
@@ -43,7 +43,7 @@ const StakingSummary = () => {
             ff="darkerGrotesque"
             fs={16}
             fw={600}
-            style={{color: 'rgba(255, 255, 255, 0.50)', lineHeight: '12px'}}>
+            style={{ color: 'rgba(255, 255, 255, 0.50)', lineHeight: '12px' }}>
             Stacked
           </Text>
           <Text ff="nippo" fs={18} fw={400}>
@@ -83,7 +83,7 @@ interface StakingSummaryDataProp {
 }
 
 const StakingSummaryData = (props: StakingSummaryDataProp) => {
-  const {title, value, img} = props;
+  const { title, value, img } = props;
   return (
     <Row
       style={{
@@ -93,12 +93,12 @@ const StakingSummaryData = (props: StakingSummaryDataProp) => {
         borderRadius: '18px',
         background: 'rgba(255, 255, 255, 0.10)',
       }}>
-      <Col style={{display: 'flex', flexDirection: 'column'}}>
+      <Col style={{ display: 'flex', flexDirection: 'column' }}>
         <Text
           ff="darkerGrotesque"
           fs={16}
           fw={600}
-          style={{color: 'rgba(255, 255, 255, 0.50)', lineHeight: '12px'}}>
+          style={{ color: 'rgba(255, 255, 255, 0.50)', lineHeight: '12px' }}>
           {title}
         </Text>
         <Text ff="nippo" fs={18} fw={400}>
