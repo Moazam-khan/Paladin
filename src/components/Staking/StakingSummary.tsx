@@ -33,12 +33,10 @@ const StakingSummary = () => {
             height: '150px',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundImage: `url(${staking})`,
-            //backgroundColor: 'red',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
             flexDirection: 'column',
+            position: 'relative',
           }}>
+          <img src={staking} style={{position: 'absolute'}} />
           <Text
             ff="darkerGrotesque"
             fs={16}
