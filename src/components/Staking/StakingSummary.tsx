@@ -21,7 +21,7 @@ const StakingSummary = () => {
       </Text>
       <Row
         style={{
-          marginTop: '24px',
+          marginTop: '24.1px',
           gap: '24px',
           flexDirection: xs ? 'column' : 'row',
           alignItems: 'center',
