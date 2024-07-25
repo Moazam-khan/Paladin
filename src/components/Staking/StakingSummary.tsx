@@ -33,7 +33,7 @@ const StakingSummary = () => {
             height: '150px',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundImage: `${staking}`,
+            backgroundImage: `url(${staking})`,
             //backgroundColor: 'red',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
