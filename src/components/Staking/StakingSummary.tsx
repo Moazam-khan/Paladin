@@ -1,7 +1,7 @@
 import {useBreakpoint} from '@/hooks';
 import {Col, Row} from 'antd';
 import purpleLock from '../../assets/purpleLock.png';
-import staking from '../../assets/staking_summary.svg';
+import staking from '../../assets/staking-summary.svg';
 import yellowLock from '../../assets/yellowLock.png';
 import Text from '../Text';
 
