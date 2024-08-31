@@ -1,4 +1,4 @@
-import {CommonModals} from '@/components/modals';
+
 import {UserProvider} from '@/contexts';
 import {queryClient} from '@/utils';
 import {QueryClientProvider} from '@tanstack/react-query';
@@ -21,7 +21,7 @@ const AppProvider = ({children}: Props) => {
             <UserProvider>
               <Privy>{children}</Privy>
             </UserProvider>
-            <CommonModals />
+          
           </QueryClientProvider>
         </Web3ModalProvider>
       </ThemeProvider>

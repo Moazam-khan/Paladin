@@ -1,4 +1,5 @@
 export {default as Home} from './Home';
-export {default as MyAccount} from './MyAccount';
-export {default as Nfts} from './Nfts';
-export {default as PreSale} from './PresalePage';
+export {default as Mint} from './Mint';
+export {default as Staking} from './Staking';
+export {default as Account} from './Account';
+

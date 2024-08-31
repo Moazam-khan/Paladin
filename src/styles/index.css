@@ -1,8 +1,9 @@
 @import url('fonts.css');
 @import './btn.scss';
+@import './mystyle.scss';
 
 :root {
-  font-family: Nippo, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Nippo,Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   font-weight: 400;
 

@@ -1,7 +1,8 @@
 import {useBreakpoint} from '@/hooks';
 import {Layout} from 'antd';
 import React from 'react';
-import {Footer, Header} from '.';
+import Footer from './Footer';
+import Navbar from './Navbar';
 
 const {Content} = Layout;
 
@@ -10,18 +11,20 @@ interface Props {
 }
 
 const AppLayout = ({children}: Props) => {
-  const {md} = useBreakpoint();
+  const {xs} = useBreakpoint();
   return (
     <Layout
       style={{
         backgroundColor: 'transparent',
-        maxWidth: '1329px',
+        maxWidth: '1440px',
         margin: 'auto',
-        padding: '0 24px',
+        padding:xs? '0px 12px 24px 12px':'0 24px',
       }}>
-      <Header />
-      <Content style={{}}>{children}</Content>
-      <Footer />
+      <Navbar></Navbar>
+
+      // <Content style={{}}>{children}</Content>
+
+ <Footer></Footer>
     </Layout>
   );
 };

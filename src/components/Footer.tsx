@@ -1,170 +1,294 @@
-import logo from '@/assets/logo.png';
-import blend from '@/assets/social-blend.png';
-import discord from '@/assets/social-discord.png';
-import twitter from '@/assets/social-twitter.png';
+import {Col, Row} from 'antd';
+import Blog from '../assets/NewAssets/Footer/Blog.png';
+import Disscard from '../assets/NewAssets/Footer/Disscard.png';
+import Telegram from '../assets/NewAssets/Footer/Telegram.png';
+import X from '../assets/NewAssets/Footer/X.png';
 import {useBreakpoint} from '@/hooks';
-import {colors, fontFamily} from '@/utils';
-import {Col, Flex, Row} from 'antd';
-import Text from './Text';
 
-type Props = {};
-
-const footerMenus = [
-  {
-    title: {title: 'Products', link: '/products'},
-    Items: [
-      {
-        title: 'NFTs',
-        link: '/nfts',
-      },
-      {
-        title: 'Marketplace',
-        link: '/marketplace',
-      },
-      {
-        title: 'Governance',
-        link: '/governance',
-      },
-    ],
-  },
-  {
-    title: {title: 'Contact Us', link: '/contact-us'},
-    Items: [
-      {
-        title: 'NFTs',
-        link: '/nfts',
-      },
-      {
-        title: 'Marketplace',
-        link: '/marketplace',
-      },
-      {
-        title: 'Governance',
-        link: '/governance',
-      },
-    ],
-  },
-  {
-    title: {title: 'About Us', link: '/about-us'},
-    Items: [
-      {
-        title: 'NFTs',
-        link: '/nfts',
-      },
-      {
-        title: 'Marketplace',
-        link: '/marketplace',
-      },
-      {
-        title: 'Governance',
-        link: '/governance',
-      },
-    ],
-  },
-];
-
-const Footer = (props: Props) => {
-  const {sm, md} = useBreakpoint();
+const Footer = () => {
+  const {xs} = useBreakpoint();
   return (
-    <Row
-      gutter={[28, 56]}
-      style={{
-        margin: '36px 0',
-      }}>
-      <Col xs={24} md={8} lg={6}>
-        <img src={logo} style={{height: 22}} />
-        <Text
-          style={{
-            fontFamily: fontFamily.darkerGrotesque,
+    <Row style={{
+      gap:'56px',
 
-            fontSize: 18,
-            fontWeight: 700,
-            display: 'block',
-            color: colors.white50,
-            lineHeight: '18px',
-            marginTop: 10,
-          }}>
-          Mint, Showcase, and Own Your Unique Creations in the World of NFT.
-        </Text>
-        <Flex
-          gap={20}
+
+
+    }}>
+
+    <Row
+      style={{
+
+        padding: '56px 0px',
+        alignSelf: 'stretch',
+        flexDirection: 'column', // Border for the container
+        width:'100%'
+
+      }}>
+         <div
+  style={{
+    height: '1px',
+    width: '100%', // You can set a specific width like '50%' or '200px' if needed
+    backgroundColor: 'rgba(255, 255, 255, 0.20)',
+    marginBottom:'36px'
+  }}
+></div>
+      <Row>
+        <Col
           style={{
-            marginTop: 20,
+            width: '354px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: xs ? 'center':'flex-start',
+            gap: '10px',
+
+            padding: '10px', // Optional: Adding padding for better spacing
           }}>
-          <a
-            href="https://medium.com/@paladinsdao"
-            target="_blank"
-            rel="noreferrer">
-            <img src={blend} height={24} />
-          </a>
-          {/* <img src={telegram} height={24} /> */}
-          <a
-            href="https://x.com/paladinsdao?lang=en"
-            target="_blank"
-            rel="noreferrer">
-            <img src={twitter} height={24} />
-          </a>
-          <a
-            href="https://discord.com/invite/paladinsdao"
-            target="_blank"
-            rel="noreferrer">
-            <img src={discord} height={24} />
-          </a>
-        </Flex>
-      </Col>
-      <Col xs={24} md={16} lg={18}>
-        <Row gutter={[12, 36]}>
-          {footerMenus.map((subMenu, index) => (
-            <Col
+          {/* First Element: Image */}
+          <div
+            style={{
+              color: 'var(--Text-Default, #FFF)',
+              fontFamily: 'Nippo',
+              fontSize: '36px',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',
+            }}>
+            {/* Replace with your image */}
+            PALADINS
+          </div>
+
+          {/* Second Element: Text */}
+          <div
+            style={{
+              color: 'var(--Text-Descritpion---On-Black, #7D7D7D)',
+              fontFamily: 'DarkerGrotesque',
+              fontSize: '18px',
+              fontStyle: 'normal',
+              fontWeight: 700,
+              lineHeight: '100%', // or 18px
+              textAlign : xs? 'center': 'left',
+            }}>
+            Lorem ipsum dolor sit amet consectetur. Non curabitur egestas quis
+            in gravida parturient lacinia lacus.
+          </div>
+
+          {/* Third Element: Icon */}
+          <div
+            style={{
+              width: '254px',
+              height: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'left',
+            }}>
+            <Row
+              style={{
+                display: 'flex', // Ensure flexbox is used
+                flexDirection: 'row', // Arrange items horizontall
+                gap: '20px', // Space between images
+                width: '100%', // Make sure Row takes full width of parent div
+                justifyContent: xs ? 'center':'left'
+              }}>
+              <img
+                style={{width: '24px', height: '24px'}} // Remove gap from individual images
+                src={Blog}
+                alt="Blog"
+              />
+              <img
+                style={{width: '24px', height: '24px'}} // Remove gap from individual images
+                src={Telegram}
+                alt="Telegram"
+              />
+              <img
+                style={{width: '24px', height: '24px'}} // Remove gap from individual images
+                src={X}
+                alt="X"
+              />
+              <img
+                style={{width: '24px', height: '24px'}} // Remove gap from individual images
+                src={Disscard}
+                alt="Disscard"
+              />
+            </Row>
+          </div>
+        </Col>
+
+        <Col
+          style={{
+            display: 'flex',
+            alignItems: xs ? 'center' : 'flex-start',
+            gap: '10px',
+            flex: '1 0 0',
+            padding: '10px',
+            flexDirection: xs ? 'column-reverse' : 'unset',// Optional padding
+
+
+          }}>
+          {/* First Column */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '10px',
+              flex: '1 0 0',
+
+              padding: '10px', // Optional padding
+            }}>
+            {/* Heading for the first column */}
+            <div
+              style={{
+                color: 'var(--Text-Default, #FFF)',
+                fontFamily: 'DarkerGrotesque',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: 800,
+                lineHeight: '18px', // 100% of 18px
+                width: '100%', // Ensure the heading is centered within the column
+              }}>
+              Products
+            </div>
+
+            <div
               style={{
                 display: 'flex',
-                justifyContent: md ? 'center' : sm ? 'left' : 'center',
-                textAlign: sm ? 'left' : 'center',
-              }}
-              key={subMenu.title.title + index}
-              xs={24}
-              sm={8}>
-              <div>
-                <Text
-                  style={{
-                    fontFamily: fontFamily.darkerGrotesque,
-                    fontSize: 18,
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                  }}>
-                  {subMenu.title.title}
-                </Text>
-                {subMenu.Items.map((item) => (
-                  <Text
-                    key={item.title + subMenu.title.title + index}
-                    style={{
-                      fontFamily: fontFamily.darkerGrotesque,
-                      fontSize: 18,
-                      fontWeight: 600,
-                      display: 'block',
-                      color: colors.white50,
-                      cursor: 'pointer',
-                    }}>
-                    {item.title}
-                  </Text>
-                ))}
-              </div>
-            </Col>
-          ))}
-        </Row>
-      </Col>
-      <Col span={24}>
-        <Text
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                color: 'var(--Text-Descritpion---On-Black, #7D7D7D)',
+                textAlign: 'center',
+                fontFamily: '"DarkerGrotesque"',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                lineHeight: '18px', // line-height as 100% of font-size
+                // leadingTrim and textEdge are not directly supported in Ant Design,
+                // so those would remain as custom CSS if necessary.
+              }}>
+                
+              <text >Footer Item</text>
+              <text>Footer Item</text>
+              <text>Footer Item</text>
+            </div>
+          </div>
+
+          {/* Second Column */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '10px',
+              flex: '1 0 0',
+
+              padding: '10px', // Optional padding
+            }}>
+            {/* Heading for the second column */}
+            <div
+              style={{
+                color: 'var(--Text-Default, #FFF)',
+
+                fontFamily: 'DarkerGrotesque',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: 800,
+                lineHeight: '18px', // 100% of 18px
+
+                width: '100%', // Ensure the heading is centered within the column
+              }}>
+              Contact Us
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                color: 'var(--Text-Descritpion---On-Black, #7D7D7D)',
+                textAlign: 'center',
+                fontFamily: '"DarkerGrotesque"',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                lineHeight: '18px', // line-height as 100% of font-size
+                // leadingTrim and textEdge are not directly supported in Ant Design,
+                // so those would remain as custom CSS if necessary.
+              }}>
+              <text>Footer Item</text>
+              <text>Footer Item</text>
+              <text>Footer Item</text>
+            </div>
+          </div>
+
+          {/* Third Column */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '10px',
+              flex: '1 0 0',
+
+              padding: '10px', // Optional padding
+            }}>
+            {/* Heading for the third column */}
+            <div
+              style={{
+                color: 'var(--Text-Default, #FFF)',
+
+                fontFamily: 'DarkerGrotesque',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: 800,
+                lineHeight: '18px', // 100% of 18px
+
+                width: '100%', // Ensure the heading is centered within the column
+              }}>
+              About
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                color: 'var(--Text-Descritpion---On-Black, #7D7D7D)',
+                textAlign: 'center',
+                fontFamily: '"DarkerGrotesque"',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                lineHeight: '18px', // line-height as 100% of font-size
+                // leadingTrim and textEdge are not directly supported in Ant Design,
+                // so those would remain as custom CSS if necessary.
+              }}>
+              <text>Footer Item</text>
+              <text>Footer Item</text>
+              <text>Footer Item</text>
+            </div>
+          </div>
+        </Col>
+      </Row>
+
+      <Row style={{  justifyContent: xs ? 'center' : 'flex-start', // Center content if xs is true
+      }}>
+
+        <text
           style={{
-            fontFamily: fontFamily.darkerGrotesque,
+            color: 'var(--Text-Descritpion---On-Black, #7D7D7D)',
+            fontFamily: '"DarkerGrotesque"',
+            fontSize: '16px',
+            fontStyle: 'normal',
             fontWeight: 600,
-            display: 'block',
-            color: colors.white50,
-            marginTop: 36,
+            lineHeight: '100%', // or 16px
+            textAlign: 'center', // Optional: for text alignment
+            // leading-trim and text-edge are not directly supported in Ant Design
+            // so they need custom CSS
+
           }}>
-          &#169; 2024 PALADINS, all rights reserved
-        </Text>
-      </Col>
+         © 2024 PALADINS, all rights reserved
+        </text>
+      </Row>
+    </Row>
     </Row>
   );
 };
